@@ -26,7 +26,7 @@ namespace test_baza_aplikacija
         private void Initialize()
         {
             server = "SERVER=localhost;";
-            database = "DATABASE=vjezba4;";
+            database = "DATABASE=project1_v1;";
             uid = "UID=root;";
             password = "PASSWORD=hwktyetdjh9;";
             connectionString = server + database + uid + password;
@@ -36,9 +36,9 @@ namespace test_baza_aplikacija
         public Form1()
         {
             InitializeComponent();
+            label3.Text = "";
             Initialize();
             connection = new MySqlConnection(connectionString);
-            dataGridView1.Visible = false;
         }
 
         int i;
@@ -49,34 +49,24 @@ namespace test_baza_aplikacija
 
             MySqlCommand cmd = connection.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select ime from trener where ime = '" + textBox1.Text + "'";
+            cmd.CommandText = "select korisnik from login where korisnik = '" + textBox1.Text + "' and lozinka = '" + textBox2.Text + "';";
             cmd.ExecuteNonQuery();
             DataTable dt = new DataTable();
             MySqlDataAdapter DA = new MySqlDataAdapter(cmd);
             DA.Fill(dt);
             i = Convert.ToInt32(dt.Rows.Count.ToString());
-            
 
             if (i != 0)
             {
-                dataGridView1.Visible = true;
-                label3.Text = "USPIO SI JEBEM TI SUNCE";
-                dataGridView1.DataSource = dt;
+                label3.Text = "Uspješna prijava!!";
 
             }
             else
             {
-                label3.Text = "JEBIGA!!!!";
+                label3.Text = "Pogrešno korisničko ime ili lozinka!";
             }
             
-
-
             connection.Close();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
