@@ -23,22 +23,21 @@ namespace test_baza_aplikacija
         private string password;
         private string connectionString;
 
-        private void Initialize()
+        public void InitializeDatabase()
         {
             server = "SERVER=localhost;";
             database = "DATABASE=project1_v1;";
             uid = "UID=root;";
             password = "PASSWORD=hwktyetdjh9;";
             connectionString = server + database + uid + password;
+            connection = new MySqlConnection(connectionString);
         }
-
 
         public Form1()
         {
             InitializeComponent();
             label3.Text = "";
-            Initialize();
-            connection = new MySqlConnection(connectionString);
+            InitializeDatabase();
         }
 
         int i;
@@ -59,14 +58,24 @@ namespace test_baza_aplikacija
             if (i != 0)
             {
                 label3.Text = "Uspješna prijava!!";
-
+                Prikazi_drugu_formu();
+                //this.Hide();
             }
             else
             {
                 label3.Text = "Pogrešno korisničko ime ili lozinka!";
+                connection.Close();
             }
             
-            connection.Close();
+            
+
+        }
+
+        private void Prikazi_drugu_formu()
+        {
+            Form form = new Form2();
+            form.Show();
         }
     }
+
 }
