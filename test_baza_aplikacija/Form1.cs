@@ -13,7 +13,6 @@ using MySql.Data.MySqlClient;
 
 namespace test_baza_aplikacija
 {
-    
     public partial class Form1 : Form
     {
         private MySqlConnection connection;
@@ -53,27 +52,28 @@ namespace test_baza_aplikacija
             DataTable dt = new DataTable();
             MySqlDataAdapter DA = new MySqlDataAdapter(cmd);
             DA.Fill(dt);
-            i = Convert.ToInt32(dt.Rows.Count.ToString());
-
+            i = Convert.ToInt32(dt.Rows.Count);
+            
+            
             if (i != 0)
             {
                 label3.Text = "Uspješna prijava!!";
                 Prikazi_drugu_formu();
                 //this.Hide();
+                connection.Close();
             }
             else
             {
                 label3.Text = "Pogrešno korisničko ime ili lozinka!";
-                connection.Close();
+                
             }
-            
-            
 
+            connection.Close();
         }
 
         private void Prikazi_drugu_formu()
         {
-            Form form = new Form2();
+            Form form = new Form2(connection);
             form.Show();
         }
     }
