@@ -34,45 +34,44 @@ namespace test_baza_aplikacija
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        //starčeki
+        private void button1_Click(object sender, EventArgs e)
         {
-
             connection.Open();
             MySqlCommand cmd = connection.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from soba;";
+            cmd.CommandText = "select ime as Ime, prezime as Prezime, god_rodjenja as 'Godina rođenja', " +
+                              "datum_useljenja as 'Datum useljenja', soba_id as 'Broj sobe', spol as Spol, diabeticar as Diabeticar from stara_osoba;";
             cmd.ExecuteNonQuery();
             DataTable dt = new DataTable();
             MySqlDataAdapter DA = new MySqlDataAdapter(cmd);
             DA.Fill(dt);
 
-            dataGridView1.DataSource = dt;
+            int max = dt.Rows.Count;
+            int i;
+            string vrijeme;
 
-            int i = Convert.ToInt32(dt.Rows.Count.ToString());
+            for (i = 0; i < max; i++)
+            {
+                vrijeme = dt.Rows[i]["Datum useljenja"].ToString();
+                vrijeme = vrijeme.Substring(0, 9);
 
-            
+                dataGridView1.Rows.Add(dt.Rows[i]["Ime"], dt.Rows[i]["Prezime"], dt.Rows[i]["Godina rođenja"], vrijeme, dt.Rows[i]["Broj sobe"], dt.Rows[i]["Spol"], dt.Rows[i]["Diabeticar"]);
+            }
+
+
+            i = Convert.ToInt32(dt.Rows.Count.ToString());
+
+
 
             connection.Close();
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        //dodaj
+        private void button5_Click(object sender, EventArgs e)
         {
-
+            StarcekAU starcek = new StarcekAU(connection);
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            button1.BackColor = SystemColors.GradientActiveCaption;
-        }
     }
 }
