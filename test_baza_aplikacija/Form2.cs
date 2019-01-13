@@ -20,12 +20,6 @@ namespace test_baza_aplikacija
             this.connection = sqlConnection;
         }
 
-        public void NapuniListView()
-        {
-            
-
-        }
-
         private void Form2_FormClosed(Object sender, FormClosedEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing || e.CloseReason == CloseReason.WindowsShutDown)
@@ -40,8 +34,12 @@ namespace test_baza_aplikacija
             connection.Open();
             MySqlCommand cmd = connection.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select ime as Ime, prezime as Prezime, god_rodjenja as 'Godina rođenja', " +
-                              "datum_useljenja as 'Datum useljenja', soba_id as 'Broj sobe', spol as Spol, diabeticar as Diabeticar from stara_osoba;";
+            cmd.CommandText = "select s.ime as Ime, s.prezime as Prezime, s.god_rodjenja as 'Godina rođenja', s.datum_useljenja as 'Datum useljenja', s.soba_id as 'Broj sobe', o.naziv as Odjel " +
+                              "from stara_osoba s, odjel o " +
+                              "left join soba on o.ID = soba.odjel_id " +
+                              "where s.soba_id = soba.broj_sobe " +
+                              "order by s.ime;";
+
             cmd.ExecuteNonQuery();
             DataTable dt = new DataTable();
             MySqlDataAdapter DA = new MySqlDataAdapter(cmd);
@@ -56,13 +54,8 @@ namespace test_baza_aplikacija
                 vrijeme = dt.Rows[i]["Datum useljenja"].ToString();
                 vrijeme = vrijeme.Substring(0, 9);
 
-                dataGridView1.Rows.Add(dt.Rows[i]["Ime"], dt.Rows[i]["Prezime"], dt.Rows[i]["Godina rođenja"], vrijeme, dt.Rows[i]["Broj sobe"], dt.Rows[i]["Spol"], dt.Rows[i]["Diabeticar"]);
+                dataGridView1.Rows.Add(dt.Rows[i]["Ime"], dt.Rows[i]["Prezime"], dt.Rows[i]["Godina rođenja"], vrijeme, dt.Rows[i]["Broj sobe"], dt.Rows[i]["Odjel"]);
             }
-
-
-            i = Convert.ToInt32(dt.Rows.Count.ToString());
-
-
 
             connection.Close();
         }
@@ -71,6 +64,7 @@ namespace test_baza_aplikacija
         private void button5_Click(object sender, EventArgs e)
         {
             StarcekAU starcek = new StarcekAU(connection);
+            starcek.Show();
         }
 
     }

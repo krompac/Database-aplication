@@ -127,6 +127,7 @@
             // dat_useljenja
             // 
             this.dat_useljenja.AccessibleName = "unos_dat_useljenja";
+            this.dat_useljenja.CustomFormat = "dd-MM-yyy";
             this.dat_useljenja.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dat_useljenja.Location = new System.Drawing.Point(190, 265);
             this.dat_useljenja.Name = "dat_useljenja";
@@ -187,12 +188,9 @@
             this.comboBox1.AccessibleName = "unos_broj_sobe";
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Broj sobe",
-            "Naziv odjela"});
             this.comboBox1.Location = new System.Drawing.Point(190, 395);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(126, 28);
+            this.comboBox1.Size = new System.Drawing.Size(266, 28);
             this.comboBox1.TabIndex = 13;
             // 
             // button1
