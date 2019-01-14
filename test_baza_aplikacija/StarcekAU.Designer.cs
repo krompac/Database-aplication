@@ -28,101 +28,106 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.slika = new System.Windows.Forms.PictureBox();
+            this.unos_ime = new System.Windows.Forms.Label();
+            this.unos_prezime = new System.Windows.Forms.Label();
+            this.textIme = new System.Windows.Forms.TextBox();
+            this.textPrezime = new System.Windows.Forms.TextBox();
+            this.unos_god_rodjenja = new System.Windows.Forms.Label();
+            this.textGodRodjenja = new System.Windows.Forms.TextBox();
+            this.unos_datum_useljenja = new System.Windows.Forms.Label();
             this.dat_useljenja = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.unos_spol = new System.Windows.Forms.Label();
+            this.textSpol = new System.Windows.Forms.TextBox();
+            this.checkDijabeticar = new System.Windows.Forms.CheckBox();
+            this.unos_dijabeticar = new System.Windows.Forms.Label();
+            this.unos_broj_sobe = new System.Windows.Forms.Label();
+            this.comboSoba = new System.Windows.Forms.ComboBox();
+            this.gumb_dodaj = new System.Windows.Forms.Button();
+            this.gumb_odbaci = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.slika)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // slika
             // 
-            this.pictureBox1.AccessibleName = "slika";
-            this.pictureBox1.Location = new System.Drawing.Point(27, 27);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(166, 138);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.slika.AccessibleName = "";
+            this.slika.Location = new System.Drawing.Point(27, 27);
+            this.slika.Name = "slika";
+            this.slika.Size = new System.Drawing.Size(166, 138);
+            this.slika.TabIndex = 0;
+            this.slika.TabStop = false;
             // 
-            // label1
+            // unos_ime
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(234, 45);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Ime";
+            this.unos_ime.AccessibleName = "";
+            this.unos_ime.AutoSize = true;
+            this.unos_ime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.unos_ime.Location = new System.Drawing.Point(234, 45);
+            this.unos_ime.Name = "unos_ime";
+            this.unos_ime.Size = new System.Drawing.Size(36, 20);
+            this.unos_ime.TabIndex = 1;
+            this.unos_ime.Text = "Ime";
             // 
-            // label2
+            // unos_prezime
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(234, 108);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Prezime";
+            this.unos_prezime.AccessibleName = "";
+            this.unos_prezime.AutoSize = true;
+            this.unos_prezime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.unos_prezime.Location = new System.Drawing.Point(234, 108);
+            this.unos_prezime.Name = "unos_prezime";
+            this.unos_prezime.Size = new System.Drawing.Size(66, 20);
+            this.unos_prezime.TabIndex = 2;
+            this.unos_prezime.Text = "Prezime";
             // 
-            // textBox1
+            // textIme
             // 
-            this.textBox1.AccessibleName = "unos_ime";
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(327, 42);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(129, 26);
-            this.textBox1.TabIndex = 3;
+            this.textIme.AccessibleName = "unos_ime";
+            this.textIme.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textIme.Location = new System.Drawing.Point(327, 42);
+            this.textIme.Name = "textIme";
+            this.textIme.Size = new System.Drawing.Size(129, 26);
+            this.textIme.TabIndex = 3;
             // 
-            // textBox2
+            // textPrezime
             // 
-            this.textBox2.AccessibleName = "unos_prezime";
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(327, 105);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(129, 26);
-            this.textBox2.TabIndex = 4;
+            this.textPrezime.AccessibleName = "unos_prezime";
+            this.textPrezime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textPrezime.Location = new System.Drawing.Point(327, 105);
+            this.textPrezime.Name = "textPrezime";
+            this.textPrezime.Size = new System.Drawing.Size(129, 26);
+            this.textPrezime.TabIndex = 4;
             // 
-            // label3
+            // unos_god_rodjenja
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(42, 214);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(118, 20);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Godina rođenja";
+            this.unos_god_rodjenja.AccessibleName = "";
+            this.unos_god_rodjenja.AutoSize = true;
+            this.unos_god_rodjenja.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.unos_god_rodjenja.Location = new System.Drawing.Point(42, 214);
+            this.unos_god_rodjenja.Name = "unos_god_rodjenja";
+            this.unos_god_rodjenja.Size = new System.Drawing.Size(118, 20);
+            this.unos_god_rodjenja.TabIndex = 5;
+            this.unos_god_rodjenja.Text = "Godina rođenja";
             // 
-            // textBox3
+            // textGodRodjenja
             // 
-            this.textBox3.AccessibleName = "unos_god_rodjenja";
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(190, 216);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(129, 26);
-            this.textBox3.TabIndex = 6;
+            this.textGodRodjenja.AccessibleName = "unos_god_rodjenja";
+            this.textGodRodjenja.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textGodRodjenja.Location = new System.Drawing.Point(190, 216);
+            this.textGodRodjenja.Name = "textGodRodjenja";
+            this.textGodRodjenja.Size = new System.Drawing.Size(129, 26);
+            this.textGodRodjenja.TabIndex = 6;
+            this.textGodRodjenja.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
-            // label4
+            // unos_datum_useljenja
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(42, 265);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(123, 20);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Datum useljenja";
+            this.unos_datum_useljenja.AccessibleName = "";
+            this.unos_datum_useljenja.AutoSize = true;
+            this.unos_datum_useljenja.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.unos_datum_useljenja.Location = new System.Drawing.Point(42, 265);
+            this.unos_datum_useljenja.Name = "unos_datum_useljenja";
+            this.unos_datum_useljenja.Size = new System.Drawing.Size(123, 20);
+            this.unos_datum_useljenja.TabIndex = 7;
+            this.unos_datum_useljenja.Text = "Datum useljenja";
             // 
             // dat_useljenja
             // 
@@ -134,114 +139,117 @@
             this.dat_useljenja.Size = new System.Drawing.Size(294, 26);
             this.dat_useljenja.TabIndex = 0;
             // 
-            // label5
+            // unos_spol
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(42, 311);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 20);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Spol";
+            this.unos_spol.AccessibleName = "unos_spol";
+            this.unos_spol.AutoSize = true;
+            this.unos_spol.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.unos_spol.Location = new System.Drawing.Point(42, 311);
+            this.unos_spol.Name = "unos_spol";
+            this.unos_spol.Size = new System.Drawing.Size(41, 20);
+            this.unos_spol.TabIndex = 8;
+            this.unos_spol.Text = "Spol";
             // 
-            // textBox4
+            // textSpol
             // 
-            this.textBox4.AccessibleName = "unos_spol";
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(190, 311);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(73, 26);
-            this.textBox4.TabIndex = 9;
+            this.textSpol.AccessibleName = "unos_spol";
+            this.textSpol.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textSpol.Location = new System.Drawing.Point(190, 311);
+            this.textSpol.Name = "textSpol";
+            this.textSpol.Size = new System.Drawing.Size(73, 26);
+            this.textSpol.TabIndex = 9;
             // 
-            // checkBox1
+            // checkDijabeticar
             // 
-            this.checkBox1.AccessibleName = "unos_diabeticar";
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(190, 359);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 10;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkDijabeticar.AccessibleName = "unos_diabeticar";
+            this.checkDijabeticar.AutoSize = true;
+            this.checkDijabeticar.Location = new System.Drawing.Point(190, 359);
+            this.checkDijabeticar.Name = "checkDijabeticar";
+            this.checkDijabeticar.Size = new System.Drawing.Size(15, 14);
+            this.checkDijabeticar.TabIndex = 10;
+            this.checkDijabeticar.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // unos_dijabeticar
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(42, 354);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 20);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Daibetičar";
+            this.unos_dijabeticar.AccessibleName = "unos_dijabeticar";
+            this.unos_dijabeticar.AutoSize = true;
+            this.unos_dijabeticar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.unos_dijabeticar.Location = new System.Drawing.Point(42, 354);
+            this.unos_dijabeticar.Name = "unos_dijabeticar";
+            this.unos_dijabeticar.Size = new System.Drawing.Size(84, 20);
+            this.unos_dijabeticar.TabIndex = 11;
+            this.unos_dijabeticar.Text = "Dijabetičar";
             // 
-            // label7
+            // unos_broj_sobe
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(42, 403);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(76, 20);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Broj sobe";
+            this.unos_broj_sobe.AccessibleName = "unos_broj_sobe";
+            this.unos_broj_sobe.AutoSize = true;
+            this.unos_broj_sobe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.unos_broj_sobe.Location = new System.Drawing.Point(42, 403);
+            this.unos_broj_sobe.Name = "unos_broj_sobe";
+            this.unos_broj_sobe.Size = new System.Drawing.Size(76, 20);
+            this.unos_broj_sobe.TabIndex = 12;
+            this.unos_broj_sobe.Text = "Broj sobe";
             // 
-            // comboBox1
+            // comboSoba
             // 
-            this.comboBox1.AccessibleName = "unos_broj_sobe";
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(190, 395);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(266, 28);
-            this.comboBox1.TabIndex = 13;
+            this.comboSoba.AccessibleName = "unos_broj_sobe";
+            this.comboSoba.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboSoba.FormattingEnabled = true;
+            this.comboSoba.Location = new System.Drawing.Point(190, 395);
+            this.comboSoba.Name = "comboSoba";
+            this.comboSoba.Size = new System.Drawing.Size(266, 28);
+            this.comboSoba.TabIndex = 13;
             // 
-            // button1
+            // gumb_dodaj
             // 
-            this.button1.AccessibleName = "gumb_dodaj";
-            this.button1.Location = new System.Drawing.Point(35, 469);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(138, 36);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Dodaj";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.gumb_dodaj.AccessibleName = "";
+            this.gumb_dodaj.Location = new System.Drawing.Point(35, 469);
+            this.gumb_dodaj.Name = "gumb_dodaj";
+            this.gumb_dodaj.Size = new System.Drawing.Size(138, 36);
+            this.gumb_dodaj.TabIndex = 14;
+            this.gumb_dodaj.Text = "Dodaj";
+            this.gumb_dodaj.UseVisualStyleBackColor = true;
+            this.gumb_dodaj.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // gumb_odbaci
             // 
-            this.button2.AccessibleName = "gumb_odbaci";
-            this.button2.Cursor = System.Windows.Forms.Cursors.SizeNS;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(212, 474);
-            this.button2.Margin = new System.Windows.Forms.Padding(0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(58, 27);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "Odbaci";
-            this.button2.UseVisualStyleBackColor = true;
+            this.gumb_odbaci.AccessibleName = "";
+            this.gumb_odbaci.Cursor = System.Windows.Forms.Cursors.SizeNS;
+            this.gumb_odbaci.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gumb_odbaci.Location = new System.Drawing.Point(212, 474);
+            this.gumb_odbaci.Margin = new System.Windows.Forms.Padding(0);
+            this.gumb_odbaci.Name = "gumb_odbaci";
+            this.gumb_odbaci.Size = new System.Drawing.Size(58, 27);
+            this.gumb_odbaci.TabIndex = 15;
+            this.gumb_odbaci.Text = "Odbaci";
+            this.gumb_odbaci.UseVisualStyleBackColor = true;
             // 
             // StarcekAU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(496, 518);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.gumb_odbaci);
+            this.Controls.Add(this.gumb_dodaj);
+            this.Controls.Add(this.comboSoba);
+            this.Controls.Add(this.unos_broj_sobe);
+            this.Controls.Add(this.unos_dijabeticar);
+            this.Controls.Add(this.checkDijabeticar);
+            this.Controls.Add(this.textSpol);
+            this.Controls.Add(this.unos_spol);
             this.Controls.Add(this.dat_useljenja);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.unos_datum_useljenja);
+            this.Controls.Add(this.textGodRodjenja);
+            this.Controls.Add(this.unos_god_rodjenja);
+            this.Controls.Add(this.textPrezime);
+            this.Controls.Add(this.textIme);
+            this.Controls.Add(this.unos_prezime);
+            this.Controls.Add(this.unos_ime);
+            this.Controls.Add(this.slika);
             this.Name = "StarcekAU";
             this.Text = "StarcekAU";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slika)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,22 +257,22 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox slika;
+        private System.Windows.Forms.Label unos_ime;
+        private System.Windows.Forms.Label unos_prezime;
+        private System.Windows.Forms.TextBox textIme;
+        private System.Windows.Forms.TextBox textPrezime;
+        private System.Windows.Forms.Label unos_god_rodjenja;
+        private System.Windows.Forms.TextBox textGodRodjenja;
+        private System.Windows.Forms.Label unos_datum_useljenja;
         private System.Windows.Forms.DateTimePicker dat_useljenja;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label unos_spol;
+        private System.Windows.Forms.TextBox textSpol;
+        private System.Windows.Forms.CheckBox checkDijabeticar;
+        private System.Windows.Forms.Label unos_dijabeticar;
+        private System.Windows.Forms.Label unos_broj_sobe;
+        private System.Windows.Forms.ComboBox comboSoba;
+        private System.Windows.Forms.Button gumb_dodaj;
+        private System.Windows.Forms.Button gumb_odbaci;
     }
 }
