@@ -84,6 +84,7 @@ namespace test_baza_aplikacija
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(850, 341);
             this.dataGridView1.TabIndex = 8;
+            this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellClick);
             // 
             // Column1
             // 

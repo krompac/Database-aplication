@@ -45,6 +45,7 @@
             this.comboSoba = new System.Windows.Forms.ComboBox();
             this.gumb_dodaj = new System.Windows.Forms.Button();
             this.gumb_odbaci = new System.Windows.Forms.Button();
+            this.gumb_fejk = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.slika)).BeginInit();
             this.SuspendLayout();
             // 
@@ -200,6 +201,7 @@
             this.comboSoba.Name = "comboSoba";
             this.comboSoba.Size = new System.Drawing.Size(266, 28);
             this.comboSoba.TabIndex = 13;
+            this.comboSoba.Text = "c";
             // 
             // gumb_dodaj
             // 
@@ -225,11 +227,22 @@
             this.gumb_odbaci.Text = "Odbaci";
             this.gumb_odbaci.UseVisualStyleBackColor = true;
             // 
+            // gumb_fejk
+            // 
+            this.gumb_fejk.AccessibleName = "fejk";
+            this.gumb_fejk.Location = new System.Drawing.Point(318, 465);
+            this.gumb_fejk.Name = "gumb_fejk";
+            this.gumb_fejk.Size = new System.Drawing.Size(138, 36);
+            this.gumb_fejk.TabIndex = 16;
+            this.gumb_fejk.Text = "FEJK";
+            this.gumb_fejk.UseVisualStyleBackColor = true;
+            // 
             // StarcekAU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(496, 518);
+            this.Controls.Add(this.gumb_fejk);
             this.Controls.Add(this.gumb_odbaci);
             this.Controls.Add(this.gumb_dodaj);
             this.Controls.Add(this.comboSoba);
@@ -274,5 +287,6 @@
         private System.Windows.Forms.ComboBox comboSoba;
         private System.Windows.Forms.Button gumb_dodaj;
         private System.Windows.Forms.Button gumb_odbaci;
+        private System.Windows.Forms.Button gumb_fejk;
     }
 }

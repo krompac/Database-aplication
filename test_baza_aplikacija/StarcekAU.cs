@@ -15,6 +15,7 @@ namespace test_baza_aplikacija
     {
         private MySqlConnection connection;
         private int line_number;
+        private string combobox_first_item = "";
         private Form2 Form2;
 
         public StarcekAU(Form2 forma2)
@@ -24,6 +25,49 @@ namespace test_baza_aplikacija
             this.line_number = ++forma2.line_number;
             Form2 = forma2;
             this.napuni_combobox();
+            gumb_fejk.Enabled = false;
+            gumb_fejk.Hide();
+        }
+
+        public StarcekAU(int row_index, MySqlConnection connection)
+        {
+            InitializeComponent();
+            this.connection = connection;
+
+            gumb_fejk.Location = gumb_dodaj.Location;
+            gumb_dodaj.Hide();
+            gumb_dodaj.Enabled = false;
+
+            connection.Open();
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from stara_osoba where ID = " + (row_index + 1).ToString() + ";";
+
+            cmd.ExecuteNonQuery();
+            DataTable dt = new DataTable();
+            MySqlDataAdapter DA = new MySqlDataAdapter(cmd);
+            DA.Fill(dt);
+
+            textIme.Text = dt.Rows[row_index]["ime"].ToString();
+            textPrezime.Text = dt.Rows[row_index]["prezime"].ToString();
+            textGodRodjenja.Text = dt.Rows[row_index]["god_rodjenja"].ToString();
+            textSpol.Text = dt.Rows[row_index]["spol"].ToString();
+            checkDijabeticar.Checked =  dt.Rows[row_index]["diabeticar"].ToString().ToLower() == "true" ? true : false;
+            dat_useljenja.Text = dt.Rows[row_index]["datum_useljenja"].ToString();
+
+            string br_sobe;
+            br_sobe = dt.Rows[row_index]["soba_id"].ToString();
+            dt.Clear();
+
+            cmd.CommandText = "select odjel.naziv as Naziv from odjel, soba where soba.broj_sobe = " + br_sobe + " and soba.odjel_id = odjel.ID;";
+            MySqlDataAdapter mySqlData = new MySqlDataAdapter(cmd);
+            mySqlData.Fill(dt);
+
+            br_sobe = $"{br_sobe,-4}";
+            combobox_first_item = br_sobe + " |   " + dt.Rows[0]["Naziv"].ToString();
+
+            connection.Close();
+            napuni_combobox();
         }
 
         //DODAJ
@@ -65,10 +109,14 @@ namespace test_baza_aplikacija
             int max = dt.Rows.Count;
             int i;
             string br_sobe;
+            bool uredi = combobox_first_item != "";
 
-            //yyyy-MM-dd
+            HashSet<String> podaci = new HashSet<string>();
 
-            List<String> podaci = new List<string>();
+            if (uredi)
+            {
+                podaci.Add(combobox_first_item);
+            }
 
             for (i = 0; i < max; i++)
             {
@@ -77,8 +125,7 @@ namespace test_baza_aplikacija
 
                 podaci.Add(br_sobe +  " |   " + dt.Rows[i]["Odjel"].ToString());
             }
-
-            comboSoba.DataSource = podaci;
+            comboSoba.DataSource = podaci.ToList();
 
             connection.Close();
         }

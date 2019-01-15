@@ -44,7 +44,7 @@ namespace test_baza_aplikacija
 
             if (izbor == odjeli.pokretni)
             {
-                naziv_odjela = " and o.naziv = 'Pokretni' ";
+                naziv_odjela = " and o.naziv = 'Pokretni' ";    
             }
             else if (izbor == odjeli.nepokretni)
             {
@@ -123,6 +123,12 @@ namespace test_baza_aplikacija
             }
 
             napuni();
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            StarcekAU starcek = new StarcekAU(e.RowIndex, connection);
+            starcek.Show();
         }
     }
 }

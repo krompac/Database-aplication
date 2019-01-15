@@ -54,7 +54,6 @@ namespace test_baza_aplikacija
             DA.Fill(dt);
             i = Convert.ToInt32(dt.Rows.Count);
             
-            
             if (i != 0)
             {
                 label3.Text = "Uspješna prijava!!";
