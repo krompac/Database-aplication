@@ -26,8 +26,8 @@ namespace test_baza_aplikacija
         {
             server = "SERVER=localhost;";
             database = "DATABASE=project1_v1;";
-            uid = "UID=root;";
-            password = "PASSWORD=hwktyetdjh9;";
+            uid = "UID=tomi;";
+            password = "PASSWORD=123;";
             connectionString = server + database + uid + password;
             connection = new MySqlConnection(connectionString);
         }
@@ -43,6 +43,12 @@ namespace test_baza_aplikacija
         private void button1_Click(object sender, EventArgs e)
         {
             i = 0;
+
+            if (connection.State == ConnectionState.Open)
+            {
+                connection.Close();
+            }
+
             connection.Open();
 
             MySqlCommand cmd = connection.CreateCommand();
@@ -72,9 +78,21 @@ namespace test_baza_aplikacija
 
         private void Prikazi_drugu_formu()
         {
-            Form form = new Form2(connection);
+            Form form = new Form2(connection, this);
             form.Show();
+            this.Hide();
         }
+
+        public void prikazi_ovu_formu()
+        {
+            this.Show();
+            label3.Text = "";
+            textBox1.Text = "";
+            textBox2.Text = "";
+
+            textBox1.Focus();
+        }
+
     }
 
 }

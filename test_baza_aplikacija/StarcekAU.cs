@@ -17,46 +17,44 @@ namespace test_baza_aplikacija
         private int line_number;
         private string combobox_first_item = "";
         private Form2 Form2;
+        private bool uredi = false;
 
         public StarcekAU(Form2 forma2)
         {
             InitializeComponent();
             this.connection = forma2.connection;
-            this.line_number = ++forma2.line_number;
+            this.line_number = forma2.line_number + 1;
             Form2 = forma2;
             this.napuni_combobox();
-            gumb_fejk.Enabled = false;
-            gumb_fejk.Hide();
         }
 
-        public StarcekAU(int row_index, MySqlConnection connection)
+        public StarcekAU(int row_index, Form2 forma2, DataGridView data)
         {
             InitializeComponent();
-            this.connection = connection;
-
-            gumb_fejk.Location = gumb_dodaj.Location;
-            gumb_dodaj.Hide();
-            gumb_dodaj.Enabled = false;
+            this.connection = forma2.connection;
+            this.Form2 = forma2;
+            this.line_number = Int32.Parse(data.Rows[row_index].Cells[6].Value.ToString());
+            uredi = true;
 
             connection.Open();
             MySqlCommand cmd = connection.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from stara_osoba where ID = " + (row_index + 1).ToString() + ";";
+            cmd.CommandText = "select * from stara_osoba where ID = " + this.line_number + ";";
 
             cmd.ExecuteNonQuery();
             DataTable dt = new DataTable();
             MySqlDataAdapter DA = new MySqlDataAdapter(cmd);
             DA.Fill(dt);
 
-            textIme.Text = dt.Rows[row_index]["ime"].ToString();
-            textPrezime.Text = dt.Rows[row_index]["prezime"].ToString();
-            textGodRodjenja.Text = dt.Rows[row_index]["god_rodjenja"].ToString();
-            textSpol.Text = dt.Rows[row_index]["spol"].ToString();
-            checkDijabeticar.Checked =  dt.Rows[row_index]["diabeticar"].ToString().ToLower() == "true" ? true : false;
-            dat_useljenja.Text = dt.Rows[row_index]["datum_useljenja"].ToString();
+            textIme.Text = dt.Rows[0]["ime"].ToString();
+            textPrezime.Text = dt.Rows[0]["prezime"].ToString();
+            textGodRodjenja.Text = dt.Rows[0]["god_rodjenja"].ToString();
+            textSpol.Text = dt.Rows[0]["spol"].ToString();
+            checkDijabeticar.Checked =  dt.Rows[0]["diabeticar"].ToString().ToLower() == "true" ? true : false;
+            dat_useljenja.Text = dt.Rows[0]["datum_useljenja"].ToString();
 
             string br_sobe;
-            br_sobe = dt.Rows[row_index]["soba_id"].ToString();
+            br_sobe = dt.Rows[0]["soba_id"].ToString();
             dt.Clear();
 
             cmd.CommandText = "select odjel.naziv as Naziv from odjel, soba where soba.broj_sobe = " + br_sobe + " and soba.odjel_id = odjel.ID;";
@@ -73,25 +71,64 @@ namespace test_baza_aplikacija
         //DODAJ
         private void button1_Click(object sender, EventArgs e)
         {
-            string id = line_number.ToString() + ", ";
-            string ime = "'" + textIme.Text + "', ";
-            string prezime = "'" + textPrezime.Text + "', ";
-            string god_rodjenja = "'" + textGodRodjenja.Text + "', ";
-            string datum_useljenja = "'" + DateTime.Parse(dat_useljenja.Text).ToString("yyyy-MM-dd") + "'";
-            string spol = "'" + textSpol.Text.Substring(0,1) + "', ";
-            string dijabeticar = checkDijabeticar.Checked ? "1, " : "0, ";
-            string broj_sobe = Convert.ToInt32(comboSoba.Text.Substring(0, comboSoba.Text.IndexOf("|"))).ToString() + ", ";
+            string id = "";
+            string ime = "";
+            string prezime = "";
+            string god_rodjenja = "";
+            string datum_useljenja = "";
+            string spol = "";
+            string dijabeticar = "";
+            string broj_sobe = "";
+            bool dobar_unos = true;
 
-            connection.Open();
-            MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "insert into stara_osoba(ID, ime, prezime, god_rodjenja, spol, diabeticar, soba_id, datum_useljenja)" +
-                              " values(" + id + ime + prezime + god_rodjenja + spol + dijabeticar + broj_sobe + datum_useljenja + ");";
-            cmd.ExecuteNonQuery();
-            
-            connection.Close();
-            Form2.napuni();
-            this.Close();
+            try
+            {
+                id = line_number.ToString() + ", ";
+                ime = "'" + textIme.Text + "', ";
+                prezime = "'" + textPrezime.Text + "', ";
+                god_rodjenja = "'" + textGodRodjenja.Text + "', ";
+                datum_useljenja = "'" + DateTime.Parse(dat_useljenja.Text).ToString("yyyy-MM-dd") + "'";
+                spol = "'" + textSpol.Text.Substring(0, 1) + "', ";
+                dijabeticar = checkDijabeticar.Checked ? "1, " : "0, ";
+                broj_sobe = Convert.ToInt32(comboSoba.Text.Substring(0, comboSoba.Text.IndexOf("|"))).ToString() + ", ";
+            }
+            catch
+            {
+                var Result = MessageBox.Show("Nisu popunjena sva polja!");
+                dobar_unos = false;
+            }
+            finally
+            {
+                if (dobar_unos)
+                {
+                    connection.Open();
+                    MySqlCommand cmd = connection.CreateCommand();
+                    cmd.CommandType = CommandType.Text;
+
+                    if (uredi == false)
+                    { 
+                        cmd.CommandText = "insert into stara_osoba(ID, ime, prezime, god_rodjenja, spol, diabeticar, soba_id, datum_useljenja)" +
+                                          " values(" + id + ime + prezime + god_rodjenja + spol + dijabeticar + broj_sobe + datum_useljenja + ");";
+                    }
+                    else
+                    {
+                        id = line_number.ToString();
+                        cmd.CommandText = "update stara_osoba set ime = " + ime + "prezime = " + prezime + "god_rodjenja = " + god_rodjenja +
+                                          " spol = " + spol + "diabeticar = " + dijabeticar + " soba_id = " + broj_sobe + " datum_useljenja = " + datum_useljenja + 
+                                          " where ID = " + id + ";";
+                    }
+                    cmd.ExecuteNonQuery();
+
+                    connection.Close();
+
+                    Form2.napuni();
+                    this.Close();
+                }
+                else
+                {
+                    dobar_unos = true;
+                }
+            }
         }
 
         private void napuni_combobox()
@@ -140,6 +177,30 @@ namespace test_baza_aplikacija
             {
                 textGodRodjenja.Text = "";
             }
+        }
+
+        private void textBox3_SpolChanged(object sender, EventArgs e)
+        {
+            textSpol.Text = textSpol.Text.ToUpper();
+
+            if (textSpol.Text == "Z")
+            {
+                textSpol.Text = "Ž";
+            }
+
+            if (textSpol.Text != "Ž" && textSpol.Text != "M")
+            {
+                textSpol.Text = "";
+            }
+            else
+            {
+                textSpol.SelectionStart = textSpol.Text.Length;
+            }
+        }
+
+        private void gumb_odbaci_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

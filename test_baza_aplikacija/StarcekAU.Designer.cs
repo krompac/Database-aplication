@@ -45,7 +45,6 @@
             this.comboSoba = new System.Windows.Forms.ComboBox();
             this.gumb_dodaj = new System.Windows.Forms.Button();
             this.gumb_odbaci = new System.Windows.Forms.Button();
-            this.gumb_fejk = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.slika)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,6 +117,7 @@
             this.textGodRodjenja.Size = new System.Drawing.Size(129, 26);
             this.textGodRodjenja.TabIndex = 6;
             this.textGodRodjenja.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.textSpol.TextChanged += new System.EventHandler(this.textBox3_SpolChanged);
             // 
             // unos_datum_useljenja
             // 
@@ -156,6 +156,7 @@
             this.textSpol.AccessibleName = "unos_spol";
             this.textSpol.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textSpol.Location = new System.Drawing.Point(190, 311);
+            this.textSpol.MaxLength = 1;
             this.textSpol.Name = "textSpol";
             this.textSpol.Size = new System.Drawing.Size(73, 26);
             this.textSpol.TabIndex = 9;
@@ -217,7 +218,7 @@
             // gumb_odbaci
             // 
             this.gumb_odbaci.AccessibleName = "";
-            this.gumb_odbaci.Cursor = System.Windows.Forms.Cursors.SizeNS;
+            this.gumb_odbaci.Cursor = System.Windows.Forms.Cursors.Default;
             this.gumb_odbaci.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gumb_odbaci.Location = new System.Drawing.Point(212, 474);
             this.gumb_odbaci.Margin = new System.Windows.Forms.Padding(0);
@@ -226,23 +227,13 @@
             this.gumb_odbaci.TabIndex = 15;
             this.gumb_odbaci.Text = "Odbaci";
             this.gumb_odbaci.UseVisualStyleBackColor = true;
-            // 
-            // gumb_fejk
-            // 
-            this.gumb_fejk.AccessibleName = "fejk";
-            this.gumb_fejk.Location = new System.Drawing.Point(318, 465);
-            this.gumb_fejk.Name = "gumb_fejk";
-            this.gumb_fejk.Size = new System.Drawing.Size(138, 36);
-            this.gumb_fejk.TabIndex = 16;
-            this.gumb_fejk.Text = "FEJK";
-            this.gumb_fejk.UseVisualStyleBackColor = true;
+            this.gumb_odbaci.Click += new System.EventHandler(this.gumb_odbaci_Click);
             // 
             // StarcekAU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(496, 518);
-            this.Controls.Add(this.gumb_fejk);
             this.Controls.Add(this.gumb_odbaci);
             this.Controls.Add(this.gumb_dodaj);
             this.Controls.Add(this.comboSoba);
@@ -287,6 +278,5 @@
         private System.Windows.Forms.ComboBox comboSoba;
         private System.Windows.Forms.Button gumb_dodaj;
         private System.Windows.Forms.Button gumb_odbaci;
-        private System.Windows.Forms.Button gumb_fejk;
     }
 }
