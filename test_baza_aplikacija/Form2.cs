@@ -77,13 +77,16 @@ namespace test_baza_aplikacija
             line_number = dt.Rows.Count;
             int i;
             string vrijeme = "";
+            string god_vrijeme = "";
 
             for (i = 0; i < line_number; i++)
             {
                 vrijeme = dt.Rows[i]["Datum useljenja"].ToString();
                 vrijeme = vrijeme.Substring(0, 9);
+                god_vrijeme = dt.Rows[i]["Godina rođenja"].ToString();
+                god_vrijeme = god_vrijeme.Substring(0, 9);
 
-                dataGridView.Rows.Add(dt.Rows[i]["Ime"], dt.Rows[i]["Prezime"], dt.Rows[i]["Godina rođenja"], vrijeme, dt.Rows[i]["Broj sobe"], dt.Rows[i]["Odjel"], dt.Rows[i]["ID"]);
+                dataGridView.Rows.Add(dt.Rows[i]["Ime"], dt.Rows[i]["Prezime"], god_vrijeme, vrijeme, dt.Rows[i]["Broj sobe"], dt.Rows[i]["Odjel"], dt.Rows[i]["ID"]);
             }
 
             connection.Close();
@@ -102,6 +105,8 @@ namespace test_baza_aplikacija
             nepokretni.Show();
             dataGridView.Enabled = true;
             dataGridView.Show();
+            izbrisi.Enabled = true;
+            izbrisi.Show();
 
             napuni();
         }
@@ -172,7 +177,7 @@ namespace test_baza_aplikacija
 
         private void izbrisi_Click(object sender, EventArgs e)
         {
-            if (dataGridView.SelectedCells != null)
+            if (dataGridView.SelectedCells.Count > 0)
             {
                 var pitanje = MessageBox.Show("Želite li izbrisati odabrane ćelije?", "Brisanje ćelija", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -198,6 +203,11 @@ namespace test_baza_aplikacija
                     napuni();
                 }
             }
+        }
+
+        private void sobe_Click(object sender, EventArgs e)
+        {
+            Sobe sobe = new Sobe(this);
         }
     }
 }

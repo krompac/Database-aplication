@@ -7,9 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data;
+//using System.Data;
 using MySql.Data.MySqlClient;
-
 
 namespace test_baza_aplikacija
 {
@@ -26,8 +25,8 @@ namespace test_baza_aplikacija
         {
             server = "SERVER=localhost;";
             database = "DATABASE=project1_v1;";
-            uid = "UID=tomi;";
-            password = "PASSWORD=123;";
+            uid = "UID=root;";
+            password = "PASSWORD=hwktyetdjh9;";
             connectionString = server + database + uid + password;
             connection = new MySqlConnection(connectionString);
         }

@@ -34,6 +34,7 @@ namespace test_baza_aplikacija
             this.connection = forma2.connection;
             this.Form2 = forma2;
             this.line_number = Int32.Parse(data.Rows[row_index].Cells[6].Value.ToString());
+            this.gumb_dodaj.Text = "Uredi";
             uredi = true;
 
             connection.Open();
@@ -48,10 +49,12 @@ namespace test_baza_aplikacija
 
             textIme.Text = dt.Rows[0]["ime"].ToString();
             textPrezime.Text = dt.Rows[0]["prezime"].ToString();
-            textGodRodjenja.Text = dt.Rows[0]["god_rodjenja"].ToString();
+            dat_rodjenja.Text = dt.Rows[0]["god_rodjenja"].ToString();
             textSpol.Text = dt.Rows[0]["spol"].ToString();
             checkDijabeticar.Checked =  dt.Rows[0]["diabeticar"].ToString().ToLower() == "true" ? true : false;
             dat_useljenja.Text = dt.Rows[0]["datum_useljenja"].ToString();
+            kontak_osoba.Text = dt.Rows[0]["kontakt_osoba"].ToString();
+            kontakt_tel.Text = dt.Rows[0]["broj_mob_kontakt"].ToString();
 
             string br_sobe;
             br_sobe = dt.Rows[0]["soba_id"].ToString();
@@ -74,11 +77,13 @@ namespace test_baza_aplikacija
             string id = "";
             string ime = "";
             string prezime = "";
-            string god_rodjenja = "";
+            string datum_rodjenja = "";
             string datum_useljenja = "";
             string spol = "";
             string dijabeticar = "";
             string broj_sobe = "";
+            string kontakt_osoba = "";
+            string kontakt_broj = "";
             bool dobar_unos = true;
 
             try
@@ -86,11 +91,13 @@ namespace test_baza_aplikacija
                 id = line_number.ToString() + ", ";
                 ime = "'" + textIme.Text + "', ";
                 prezime = "'" + textPrezime.Text + "', ";
-                god_rodjenja = "'" + textGodRodjenja.Text + "', ";
+                datum_rodjenja = "'" + DateTime.Parse(dat_useljenja.Text).ToString("yyyy-MM-dd") + "', ";
                 datum_useljenja = "'" + DateTime.Parse(dat_useljenja.Text).ToString("yyyy-MM-dd") + "'";
                 spol = "'" + textSpol.Text.Substring(0, 1) + "', ";
                 dijabeticar = checkDijabeticar.Checked ? "1, " : "0, ";
                 broj_sobe = Convert.ToInt32(comboSoba.Text.Substring(0, comboSoba.Text.IndexOf("|"))).ToString() + ", ";
+                kontakt_osoba = "'" + kontak_osoba.Text + "', ";
+                kontakt_broj = "'" + kontakt_tel.Text + "', ";
             }
             catch
             {
@@ -107,14 +114,15 @@ namespace test_baza_aplikacija
 
                     if (uredi == false)
                     { 
-                        cmd.CommandText = "insert into stara_osoba(ID, ime, prezime, god_rodjenja, spol, diabeticar, soba_id, datum_useljenja)" +
-                                          " values(" + id + ime + prezime + god_rodjenja + spol + dijabeticar + broj_sobe + datum_useljenja + ");";
+                        cmd.CommandText = "insert into stara_osoba(ID, ime, prezime, god_rodjenja, spol, diabeticar, soba_id, kontakt_osoba, broj_mob_kontakt, datum_useljenja)" +
+                                          " values(" + id + ime + prezime + datum_rodjenja + spol + dijabeticar + broj_sobe + kontakt_osoba + kontakt_broj + datum_useljenja + ");";
                     }
                     else
                     {
                         id = line_number.ToString();
-                        cmd.CommandText = "update stara_osoba set ime = " + ime + "prezime = " + prezime + "god_rodjenja = " + god_rodjenja +
-                                          " spol = " + spol + "diabeticar = " + dijabeticar + " soba_id = " + broj_sobe + " datum_useljenja = " + datum_useljenja + 
+                        cmd.CommandText = "update stara_osoba set ime = " + ime + "prezime = " + prezime + "god_rodjenja = " + datum_rodjenja +
+                                          " spol = " + spol + "diabeticar = " + dijabeticar + " soba_id = " + broj_sobe + " kontakt_osoba = " + kontakt_osoba +
+                                          " broj_mob_kontakt = " + kontakt_broj + " datum_useljenja = " + datum_useljenja + 
                                           " where ID = " + id + ";";
                     }
                     cmd.ExecuteNonQuery();
@@ -166,18 +174,7 @@ namespace test_baza_aplikacija
 
             connection.Close();
         }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                Int32.Parse(textGodRodjenja.Text);
-            }
-            catch 
-            {
-                textGodRodjenja.Text = "";
-            }
-        }
+        
 
         private void textBox3_SpolChanged(object sender, EventArgs e)
         {

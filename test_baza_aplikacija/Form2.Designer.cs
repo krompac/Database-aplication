@@ -53,7 +53,7 @@ namespace test_baza_aplikacija
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // datagridView
+            // dataGridView
             // 
             this.dataGridView.AllowUserToAddRows = false;
             this.dataGridView.AllowUserToDeleteRows = false;
@@ -74,7 +74,7 @@ namespace test_baza_aplikacija
             this.Column5,
             this.Column7,
             this.ID});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -83,7 +83,7 @@ namespace test_baza_aplikacija
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView.Location = new System.Drawing.Point(232, 100);
-            this.dataGridView.Name = "datagridView";
+            this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.Size = new System.Drawing.Size(850, 341);
             this.dataGridView.TabIndex = 8;
@@ -95,18 +95,18 @@ namespace test_baza_aplikacija
             this.Column1.HeaderText = "Ime";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Width = 200;
+            this.Column1.Width = 190;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Prezime";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
-            this.Column2.Width = 200;
+            this.Column2.Width = 195;
             // 
             // Column3
             // 
-            this.Column3.HeaderText = "Godina rođenja";
+            this.Column3.HeaderText = "Datum rođenja";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             this.Column3.Width = 105;
@@ -116,14 +116,14 @@ namespace test_baza_aplikacija
             this.Column4.HeaderText = "Datum useljenja";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
-            this.Column4.Width = 105;
+            this.Column4.Width = 110;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "Broj sobe";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
-            this.Column5.Width = 61;
+            this.Column5.Width = 71;
             // 
             // Column7
             // 
@@ -181,14 +181,15 @@ namespace test_baza_aplikacija
             // 
             this.button3.Location = new System.Drawing.Point(3, 130);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(208, 80);
+            this.button3.Size = new System.Drawing.Size(208, 92);
             this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
+            this.button3.Text = "Sobe";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.sobe_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(3, 216);
+            this.button2.Location = new System.Drawing.Point(3, 228);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(208, 88);
             this.button2.TabIndex = 1;
@@ -275,13 +276,13 @@ namespace test_baza_aplikacija
         private CheckBox nepokretni;
         private CheckBox pokretni;
         private Button dodaj_starca;
+        private Button izbrisi;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column7;
-        private Button izbrisi;
         private DataGridViewTextBoxColumn ID;
     }
 }
