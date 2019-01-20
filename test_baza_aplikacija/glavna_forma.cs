@@ -11,7 +11,7 @@ using MySql.Data.MySqlClient;
 
 namespace test_baza_aplikacija
 {
-    public partial class Form2 : Form
+    public partial class glavna_forma : Form
     {
         private enum odjeli
         {
@@ -23,27 +23,49 @@ namespace test_baza_aplikacija
         public MySqlConnection connection;
         private odjeli izbor;
         public int line_number;
-        private Form1 parent_form;
+        private Login parent_form;
         private bool user_closing;
 
-        public Form2(MySqlConnection sqlConnection, Form1 form1)
+        private Sobe sobe;
+        private bool forma_sobe;
+        public bool ima_promjena;
+
+        public glavna_forma(MySqlConnection sqlConnection, Login form1)
         {
             InitializeComponent();
             this.connection = sqlConnection;
             parent_form = form1;
+            skrij_pokazi(false);
 
-            dodaj_starca.Enabled = false;
-            dodaj_starca.Hide();
-            pokretni.Enabled = false;
-            pokretni.Hide();
-            nepokretni.Enabled = false;
-            nepokretni.Hide();
-            dataGridView.Enabled = false;
-            dataGridView.Hide();
-
+            forma_sobe = false;
             user_closing = true;
-            izbrisi.Enabled = false;
-            izbrisi.Hide();
+            
+        }
+
+        public void skrij_pokazi(bool uvjet)
+        {
+            dodaj_starca.Enabled = uvjet;
+            pokretni.Enabled = uvjet;
+            nepokretni.Enabled = uvjet;
+            dataGridView.Enabled = uvjet;
+            izbrisi.Enabled = uvjet;
+
+            if (uvjet)
+            {
+                dodaj_starca.Show();
+                pokretni.Show();
+                nepokretni.Show();
+                dataGridView.Show();
+                izbrisi.Show();
+            }
+            else
+            {
+                dodaj_starca.Hide();
+                pokretni.Hide();
+                nepokretni.Hide();
+                dataGridView.Hide();
+                izbrisi.Hide();
+            }
         }
 
         public void napuni()
@@ -96,17 +118,11 @@ namespace test_baza_aplikacija
         private void button1_Click(object sender, EventArgs e)
         {
             izbor = odjeli.oboje;
-
-            dodaj_starca.Enabled = true;
-            dodaj_starca.Show();
-            pokretni.Enabled = true;
-            pokretni.Show();
-            nepokretni.Enabled = true;
-            nepokretni.Show();
-            dataGridView.Enabled = true;
-            dataGridView.Show();
-            izbrisi.Enabled = true;
-            izbrisi.Show();
+            if (forma_sobe)
+            {
+                sobe.Hide();
+            }
+            skrij_pokazi(true);
 
             napuni();
         }
@@ -207,7 +223,24 @@ namespace test_baza_aplikacija
 
         private void sobe_Click(object sender, EventArgs e)
         {
-            Sobe sobe = new Sobe(this);
+            if (forma_sobe == false)
+            {
+                sobe = new Sobe(this);
+                sobe.StartPosition = FormStartPosition.Manual;
+                Point point = this.Location;
+                point.Offset(225, 32);
+                sobe.Location = point;
+                forma_sobe = true;
+            }
+            
+            if (ima_promjena)
+            {
+                sobe.napuni_oba_viewa();
+                ima_promjena = false;
+            }
+
+            skrij_pokazi(false);
+            sobe.Show();
         }
     }
 }

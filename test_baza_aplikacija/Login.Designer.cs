@@ -1,6 +1,6 @@
 ﻿namespace test_baza_aplikacija
 {
-    partial class Form1
+    partial class Login
     {
         /// <summary>
         /// Required designer variable.

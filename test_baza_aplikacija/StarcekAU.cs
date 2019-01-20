@@ -16,10 +16,10 @@ namespace test_baza_aplikacija
         private MySqlConnection connection;
         private int line_number;
         private string combobox_first_item = "";
-        private Form2 Form2;
+        private glavna_forma Form2;
         private bool uredi = false;
 
-        public StarcekAU(Form2 forma2)
+        public StarcekAU(glavna_forma forma2)
         {
             InitializeComponent();
             this.connection = forma2.connection;
@@ -28,7 +28,7 @@ namespace test_baza_aplikacija
             this.napuni_combobox();
         }
 
-        public StarcekAU(int row_index, Form2 forma2, DataGridView data)
+        public StarcekAU(int row_index, glavna_forma forma2, DataGridView data)
         {
             InitializeComponent();
             this.connection = forma2.connection;
@@ -130,6 +130,7 @@ namespace test_baza_aplikacija
                     connection.Close();
 
                     Form2.napuni();
+                    Form2.ima_promjena = true;
                     this.Close();
                 }
                 else

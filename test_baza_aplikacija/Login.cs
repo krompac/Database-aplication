@@ -12,7 +12,7 @@ using MySql.Data.MySqlClient;
 
 namespace test_baza_aplikacija
 {
-    public partial class Form1 : Form
+    public partial class Login : Form
     {
         private MySqlConnection connection;
         private string server;
@@ -31,9 +31,10 @@ namespace test_baza_aplikacija
             connection = new MySqlConnection(connectionString);
         }
 
-        public Form1()
+        public Login()
         {
             InitializeComponent();
+            
             label3.Text = "";
             InitializeDatabase();
         }
@@ -77,7 +78,7 @@ namespace test_baza_aplikacija
 
         private void Prikazi_drugu_formu()
         {
-            Form form = new Form2(connection, this);
+            Form form = new glavna_forma(connection, this);
             form.Show();
             this.Hide();
         }
