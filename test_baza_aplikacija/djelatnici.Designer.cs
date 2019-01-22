@@ -32,8 +32,7 @@
             this.smjene = new System.Windows.Forms.Button();
             this.pregled_poslova = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.izbrisi = new System.Windows.Forms.Button();
+            this.dataGridDjelatnici = new System.Windows.Forms.DataGridView();
             this.ime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.radna_jedinica = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,9 +41,10 @@
             this.dat_zaposljenja = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.smjena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mjesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.izbrisi = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.place = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridDjelatnici)).BeginInit();
             this.SuspendLayout();
             // 
             // dodaj
@@ -82,12 +82,13 @@
             this.comboBox1.Size = new System.Drawing.Size(117, 21);
             this.comboBox1.TabIndex = 3;
             // 
-            // dataGridView1
+            // dataGridDjelatnici
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridDjelatnici.AllowUserToAddRows = false;
+            this.dataGridDjelatnici.AllowUserToDeleteRows = false;
+            this.dataGridDjelatnici.AllowUserToResizeColumns = false;
+            this.dataGridDjelatnici.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridDjelatnici.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ime,
             this.prezime,
             this.radna_jedinica,
@@ -96,20 +97,13 @@
             this.dat_zaposljenja,
             this.smjena,
             this.mjesto});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 96);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(839, 342);
-            this.dataGridView1.TabIndex = 4;
-            // 
-            // izbrisi
-            // 
-            this.izbrisi.Location = new System.Drawing.Point(118, 62);
-            this.izbrisi.Name = "izbrisi";
-            this.izbrisi.Size = new System.Drawing.Size(52, 23);
-            this.izbrisi.TabIndex = 5;
-            this.izbrisi.Text = "Izbriši";
-            this.izbrisi.UseVisualStyleBackColor = true;
+            this.dataGridDjelatnici.Location = new System.Drawing.Point(12, 96);
+            this.dataGridDjelatnici.Name = "dataGridDjelatnici";
+            this.dataGridDjelatnici.ReadOnly = true;
+            this.dataGridDjelatnici.RowHeadersWidth = 37;
+            this.dataGridDjelatnici.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridDjelatnici.Size = new System.Drawing.Size(839, 342);
+            this.dataGridDjelatnici.TabIndex = 4;
             // 
             // ime
             // 
@@ -159,6 +153,15 @@
             this.mjesto.Name = "mjesto";
             this.mjesto.ReadOnly = true;
             // 
+            // izbrisi
+            // 
+            this.izbrisi.Location = new System.Drawing.Point(118, 62);
+            this.izbrisi.Name = "izbrisi";
+            this.izbrisi.Size = new System.Drawing.Size(52, 23);
+            this.izbrisi.TabIndex = 5;
+            this.izbrisi.Text = "Izbriši";
+            this.izbrisi.UseVisualStyleBackColor = true;
+            // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -166,6 +169,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(140, 26);
             this.textBox1.TabIndex = 6;
+            this.textBox1.TextChanged += new System.EventHandler(this.text_changed);
             // 
             // place
             // 
@@ -184,7 +188,7 @@
             this.Controls.Add(this.place);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.izbrisi);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridDjelatnici);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.pregled_poslova);
             this.Controls.Add(this.smjene);
@@ -192,7 +196,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "djelatnici";
             this.Text = "djelatnici";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridDjelatnici)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,7 +208,7 @@
         private System.Windows.Forms.Button smjene;
         private System.Windows.Forms.Button pregled_poslova;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridDjelatnici;
         private System.Windows.Forms.DataGridViewTextBoxColumn ime;
         private System.Windows.Forms.DataGridViewTextBoxColumn prezime;
         private System.Windows.Forms.DataGridViewTextBoxColumn radna_jedinica;

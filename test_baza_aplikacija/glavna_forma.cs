@@ -85,7 +85,7 @@ namespace test_baza_aplikacija
             connection.Open();
             MySqlCommand cmd = connection.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select s.ID as ID, s.ime as Ime, s.prezime as Prezime, s.god_rodjenja as 'Godina rođenja', s.datum_useljenja as 'Datum useljenja', s.soba_id as 'Broj sobe', o.naziv as Odjel " +
+            cmd.CommandText = "select s.ID as ID, s.ime as Ime, s.prezime as Prezime, s.kontakt_osoba as 'Kontakt osoba', s.datum_useljenja as 'Datum useljenja', s.soba_id as 'Broj sobe', o.naziv as Odjel " +
                               "from stara_osoba s, odjel o " +
                               "left join soba on o.ID = soba.odjel_id " +
                               "where s.soba_id = soba.broj_sobe " + naziv_odjela +
@@ -99,16 +99,13 @@ namespace test_baza_aplikacija
             line_number = dt.Rows.Count;
             int i;
             string vrijeme = "";
-            string god_vrijeme = "";
 
             for (i = 0; i < line_number; i++)
             {
                 vrijeme = dt.Rows[i]["Datum useljenja"].ToString();
                 vrijeme = vrijeme.Substring(0, 9);
-                god_vrijeme = dt.Rows[i]["Godina rođenja"].ToString();
-                god_vrijeme = god_vrijeme.Substring(0, 9);
 
-                dataGridView.Rows.Add(dt.Rows[i]["Ime"], dt.Rows[i]["Prezime"], god_vrijeme, vrijeme, dt.Rows[i]["Broj sobe"], dt.Rows[i]["Odjel"], dt.Rows[i]["ID"]);
+                dataGridView.Rows.Add(dt.Rows[i]["Ime"], dt.Rows[i]["Prezime"], dt.Rows[i]["Kontakt osoba"], vrijeme, dt.Rows[i]["Broj sobe"], dt.Rows[i]["Odjel"], dt.Rows[i]["ID"]);
             }
 
             connection.Close();
@@ -241,6 +238,15 @@ namespace test_baza_aplikacija
 
             skrij_pokazi(false);
             sobe.Show();
+        }
+
+        private void djelatnici_Click(object sender, EventArgs e)
+        {
+            djelatnici djelatnici = new djelatnici(this);
+            djelatnici.Show();
+            Point point = this.Location;
+            point.Offset(225, 32);
+            djelatnici.Location = point;
         }
     }
 }

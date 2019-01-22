@@ -150,6 +150,9 @@
   <data name="&gt;&gt;dataGridView.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>217, 458</value>
+  </data>
   <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
@@ -270,8 +273,8 @@
   <data name="pokretni.AccessibleName" xml:space="preserve">
     <value>Pokretni</value>
   </data>
-  <data name="&gt;&gt;Column3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="button4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
   </data>
   <data name="&gt;&gt;button1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -303,11 +306,14 @@
   <data name="ID.HeaderText" xml:space="preserve">
     <value>ID</value>
   </data>
+  <data name="&gt;&gt;Column3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="nepokretni.Location" type="System.Drawing.Point, System.Drawing">
     <value>958, 62</value>
   </data>
-  <data name="button4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+  <data name="Column4.HeaderText" xml:space="preserve">
+    <value>Datum useljenja</value>
   </data>
   <data name="&gt;&gt;dodaj_starca.Parent" xml:space="preserve">
     <value>$this</value>
@@ -351,8 +357,8 @@
   <data name="&gt;&gt;dataGridView.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="dodaj_starca.Text" xml:space="preserve">
-    <value>Dodaj</value>
+  <data name="dataGridView.RowHeadersWidth" type="System.Int32, mscorlib">
+    <value>42</value>
   </data>
   <data name="nepokretni.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -420,8 +426,8 @@
   <data name="nepokretni.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 17</value>
   </data>
-  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>217, 458</value>
+  <data name="dodaj_starca.Text" xml:space="preserve">
+    <value>Dodaj</value>
   </data>
   <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -437,9 +443,6 @@
   </data>
   <data name="dodaj_starca.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
-  </data>
-  <data name="Column4.HeaderText" xml:space="preserve">
-    <value>Datum useljenja</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Starački dom</value>
