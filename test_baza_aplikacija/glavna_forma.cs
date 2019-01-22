@@ -49,6 +49,7 @@ namespace test_baza_aplikacija
             nepokretni.Enabled = uvjet;
             dataGridView.Enabled = uvjet;
             izbrisi.Enabled = uvjet;
+            filter.Enabled = uvjet;
 
             if (uvjet)
             {
@@ -57,6 +58,7 @@ namespace test_baza_aplikacija
                 nepokretni.Show();
                 dataGridView.Show();
                 izbrisi.Show();
+                filter.Show();
             }
             else
             {
@@ -65,10 +67,11 @@ namespace test_baza_aplikacija
                 nepokretni.Hide();
                 dataGridView.Hide();
                 izbrisi.Hide();
+                filter.Hide();
             }
         }
 
-        public void napuni()
+        public void napuni(string sql = "")
         {
             string naziv_odjela = "";
 
@@ -88,7 +91,7 @@ namespace test_baza_aplikacija
             cmd.CommandText = "select s.ID as ID, s.ime as Ime, s.prezime as Prezime, s.kontakt_osoba as 'Kontakt osoba', s.datum_useljenja as 'Datum useljenja', s.soba_id as 'Broj sobe', o.naziv as Odjel " +
                               "from stara_osoba s, odjel o " +
                               "left join soba on o.ID = soba.odjel_id " +
-                              "where s.soba_id = soba.broj_sobe " + naziv_odjela +
+                              "where s.soba_id = soba.broj_sobe " + naziv_odjela + sql +
                               "order by s.ime;";
 
             cmd.ExecuteNonQuery();
@@ -247,6 +250,29 @@ namespace test_baza_aplikacija
             Point point = this.Location;
             point.Offset(225, 32);
             djelatnici.Location = point;
+        }
+
+        private void data_filter(object sender, EventArgs e)
+        {
+            int broj;
+            bool je_broj = Int32.TryParse(filter.Text, out broj);
+            string sql = "";
+
+            dodaj_starca.Text = "KURAC";
+
+            if (je_broj)
+            {
+                sql = " and s.soba_id = " + broj.ToString() + " ";
+            }
+            else
+            {
+                if (filter.Text != "")
+                {
+                    sql = " and (s.ime like '%" + filter.Text + "%' or s.prezime like '%" + filter.Text + "%' or CONCAT(s.ime, ' ', s.prezime) like '%";
+                    sql += filter.Text + "%' or CONCAT(s.prezime, ' ', s.ime) like '%" + filter.Text + "%' or s.kontakt_osoba like '%" + filter.Text + "%') ";
+                }
+            }
+            napuni(sql);
         }
     }
 }

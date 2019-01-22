@@ -54,21 +54,15 @@ namespace test_baza_aplikacija
 
         private void text_changed(object sender, EventArgs e)
         {
-            filter(textBox1);
-        }
-
-        private void filter(TextBox filter)
-        {
             int broj;
-            bool je_broj = Int32.TryParse(filter.Text, out broj);
+            bool je_broj = Int32.TryParse(textBox1.Text, out broj);
             string sql = "";
-            
-            if (filter.Text != "")
+
+            if (textBox1.Text != "")
             {
-                sql = " where d.ime like '%" + filter.Text + "%' or d.prezime like '%" + filter.Text + "%' or CONCAT(d.ime, ' ', d.prezime) like '%" + filter.Text + "%' or CONCAT(d.prezime, ' ', d.ime) like '%" + filter.Text + "%'";
+                sql = " where d.ime like '%" + textBox1.Text + "%' or d.prezime like '%" + textBox1.Text + "%' or CONCAT(d.ime, ' ', d.prezime) like '%" + textBox1.Text + "%' or CONCAT(d.prezime, ' ', d.ime) like '%" + textBox1.Text + "%'";
             }
             napuni_djelatnike(sql);
         }
-
     }
 }
