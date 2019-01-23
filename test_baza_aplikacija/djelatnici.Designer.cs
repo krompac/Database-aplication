@@ -76,17 +76,21 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.comboBox1.Cursor = System.Windows.Forms.Cursors.Default;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(734, 62);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(117, 21);
             this.comboBox1.TabIndex = 3;
+            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.combobox_changed);
             // 
             // dataGridDjelatnici
             // 
             this.dataGridDjelatnici.AllowUserToAddRows = false;
             this.dataGridDjelatnici.AllowUserToDeleteRows = false;
             this.dataGridDjelatnici.AllowUserToResizeColumns = false;
+            this.dataGridDjelatnici.AllowUserToResizeRows = false;
             this.dataGridDjelatnici.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridDjelatnici.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ime,
