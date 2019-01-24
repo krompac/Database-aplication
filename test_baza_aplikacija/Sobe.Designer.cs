@@ -119,6 +119,7 @@
             this.combonepok.Name = "combonepok";
             this.combonepok.Size = new System.Drawing.Size(116, 21);
             this.combonepok.TabIndex = 5;
+            this.combonepok.SelectedIndexChanged += new System.EventHandler(this.textPok_changed);
             // 
             // label1
             // 
@@ -170,6 +171,7 @@
             this.broj_soba_nepok.ReadOnly = true;
             this.broj_soba_nepok.Size = new System.Drawing.Size(33, 22);
             this.broj_soba_nepok.TabIndex = 11;
+            
             // 
             // dataGridView1
             // 
@@ -238,6 +240,7 @@
             this.combopok.Name = "combopok";
             this.combopok.Size = new System.Drawing.Size(116, 21);
             this.combopok.TabIndex = 4;
+            this.combopok.SelectedIndexChanged += new System.EventHandler(this.textPok_changed);
             // 
             // broj_soba_pok
             // 

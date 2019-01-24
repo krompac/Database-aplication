@@ -19,8 +19,10 @@ namespace test_baza_aplikacija
         private List<string> cb = new List<string>()
         {
             "",
-            " and 'Slobodni kreveti' = 0 "
-        }; 
+            " and s.broj_kreveta - broj_praznih_kreveta(s.Broj_sobe) = 0 ",
+            " and s.broj_kreveta - broj_praznih_kreveta(s.Broj_sobe) != 0 ",
+            " and broj_praznih_kreveta(s.Broj_sobe) = 0 "
+        };
 
         private enum krevetnost_sobe
         {
@@ -35,18 +37,17 @@ namespace test_baza_aplikacija
             this.connection = form.connection;
             
             Forma2 = form;
-            napuni_oba_viewa();
             combonepok.SelectedIndex = 0;
             combopok.SelectedIndex = 0;
         }
         
         public void napuni_oba_viewa()
         {
-            napuni(dataGridView1, 1);
-            napuni(dataGridView2, 2);
+            napuni(dataGridView1, 1, combopok);
+            napuni(dataGridView2, 2, combonepok);
         }
 
-        private void napuni(DataGridView dataGridView, int broj_odjela, int br_sobe = 0, string sobarica_sql = "")
+        private void napuni(DataGridView dataGridView, int broj_odjela, ComboBox pok, int br_sobe = 0, string sobarica_sql = "")
         {
             dataGridView.Rows.Clear();
             connection.Open();
@@ -54,7 +55,7 @@ namespace test_baza_aplikacija
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select s.Broj_sobe as 'Broj sobe', s.broj_kreveta as 'Broj kreveta',  s.broj_kreveta - broj_praznih_kreveta(s.Broj_sobe) as 'Slobodni kreveti', " +
                               "djelatnik.ime, djelatnik.prezime from soba s " +
-                              "left join djelatnik on s.sobarica_id = djelatnik.ID where s.odjel_id = " + broj_odjela.ToString() + sobarica_sql + cb[1] + 
+                              "left join djelatnik on s.sobarica_id = djelatnik.ID where s.odjel_id = " + broj_odjela.ToString() + sobarica_sql + cb[pok.SelectedIndex] + 
                               " order by s.Broj_sobe;";
 
             cmd.ExecuteNonQuery();
@@ -62,7 +63,6 @@ namespace test_baza_aplikacija
             MySqlDataAdapter DA = new MySqlDataAdapter(cmd);
             DA.Fill(dt);
 
-            
             int i;
             string full_ime;
             krevetnost_sobe krevetnost;
@@ -110,34 +110,34 @@ namespace test_baza_aplikacija
             return SQL;
         }
 
-        private void filter(DataGridView gridView, TextBox filter, int odj_id)
+        private void filter(DataGridView gridView, TextBox filter, int odj_id, ComboBox pok)
         {
             int broj;
             bool je_broj = Int32.TryParse(filter.Text, out broj);
 
             if (je_broj)
             {
-                napuni(gridView, odj_id, broj);
+                napuni(gridView, odj_id, pok, broj);
             }
             else if (filter.Text != "")
             {
-                napuni(gridView, odj_id, -1, sobarica_SQL(filter.Text));
+                napuni(gridView, odj_id, pok, -1, sobarica_SQL(filter.Text));
             }
             else
             {
-                napuni(gridView, odj_id);
+                napuni(gridView, odj_id, pok);
             }
         }
 
         private void textPok_changed(object sender, EventArgs e)
         {
-            if (sender == trazi_pok)
+            if (sender == trazi_pok || sender == combopok)
             {
-                filter(dataGridView1, trazi_pok, 1);
+                filter(dataGridView1, trazi_pok, 1, combopok);
             }
-            else if (sender == trazi_nepok)
+            else if (sender == trazi_nepok || sender == combonepok)
             {
-                filter(dataGridView2, trazi_nepok, 2);
+                filter(dataGridView2, trazi_nepok, 2, combonepok);
             }
         }
     }

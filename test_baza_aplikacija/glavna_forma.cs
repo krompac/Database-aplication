@@ -39,7 +39,6 @@ namespace test_baza_aplikacija
 
             forma_sobe = false;
             user_closing = true;
-            
         }
 
         public void skrij_pokazi(bool uvjet)
