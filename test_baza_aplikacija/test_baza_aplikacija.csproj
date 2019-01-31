@@ -59,6 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cistacica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cistacica.Designer.cs">
+      <DependentUpon>Cistacica.cs</DependentUpon>
+    </Compile>
     <Compile Include="djelatnici.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     <Compile Include="StarcekAU.Designer.cs">
       <DependentUpon>StarcekAU.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Cistacica.resx">
+      <DependentUpon>Cistacica.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="djelatnici.resx">
       <DependentUpon>djelatnici.cs</DependentUpon>
     </EmbeddedResource>

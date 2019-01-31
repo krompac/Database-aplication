@@ -181,14 +181,14 @@ namespace test_baza_aplikacija
             resources.ApplyResources(this.nepokretni, "nepokretni");
             this.nepokretni.Name = "nepokretni";
             this.nepokretni.UseVisualStyleBackColor = true;
-            this.nepokretni.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.nepokretni.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // pokretni
             // 
             resources.ApplyResources(this.pokretni, "pokretni");
             this.pokretni.Name = "pokretni";
             this.pokretni.UseVisualStyleBackColor = true;
-            this.pokretni.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.pokretni.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // dodaj_starca
             // 
@@ -206,6 +206,7 @@ namespace test_baza_aplikacija
             // 
             // filter
             // 
+            this.filter.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             resources.ApplyResources(this.filter, "filter");
             this.filter.Name = "filter";
             this.filter.TextChanged += new System.EventHandler(this.data_filter);

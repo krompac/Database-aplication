@@ -133,27 +133,17 @@ namespace test_baza_aplikacija
             starcek.Show();
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            if (pokretni.Checked)
-            {
-                nepokretni.Checked = false;
-                izbor = odjeli.pokretni;
-            }
-            else
-            {
-                izbor = odjeli.oboje;
-            }
-
-            napuni();
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void checkBox_CheckedChanged(object sender, EventArgs e)
         {
             if (nepokretni.Checked)
             {
                 pokretni.Checked = false;
                 izbor = odjeli.nepokretni;
+            }
+            else if (pokretni.Checked)
+            {
+                nepokretni.Checked = false;
+                izbor = odjeli.pokretni;
             }
             else
             {
@@ -256,8 +246,6 @@ namespace test_baza_aplikacija
             int broj;
             bool je_broj = Int32.TryParse(filter.Text, out broj);
             string sql = "";
-
-            dodaj_starca.Text = "KURAC";
 
             if (je_broj)
             {
