@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +11,7 @@ using MySql.Data.MySqlClient;
 
 namespace test_baza_aplikacija
 {
-    public partial class glavna_forma : Form
+    public partial class starceki : UserControl
     {
         private enum odjeli
         {
@@ -23,51 +23,67 @@ namespace test_baza_aplikacija
         public MySqlConnection connection;
         private odjeli izbor;
         public int line_number;
-        private Login parent_form;
+        private glavna_forma parent_form;
         private bool user_closing;
 
         private Sobe sobe;
         private bool forma_sobe;
         public bool ima_promjena;
 
-        public glavna_forma(MySqlConnection sqlConnection, Login form1)
+        public starceki()
         {
             InitializeComponent();
+        }
+
+        public starceki(MySqlConnection sqlConnection, glavna_forma form1)
+        {
+            InitializeComponent();
+
             this.connection = sqlConnection;
             parent_form = form1;
-            skrij_pokazi(false);
+            this.Show();
+            izbor = odjeli.oboje;
+            napuni();
 
             forma_sobe = false;
             user_closing = true;
         }
 
-        public void skrij_pokazi(bool uvjet)
+        public void starceki_Load(object sender, EventArgs e)
         {
-            dodaj_starca.Enabled = uvjet;
-            pokretni.Enabled = uvjet;
-            nepokretni.Enabled = uvjet;
-            dataGridView.Enabled = uvjet;
-            izbrisi.Enabled = uvjet;
-            filter.Enabled = uvjet;
+        }
 
-            if (uvjet)
+        private void dataGridView1_DoubleCellClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            StarcekAU starcek = new StarcekAU(e.RowIndex, this, this.dataGridView);
+            starcek.Show();
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            izbrisi.Enabled = true;
+            izbrisi.Show();
+        }
+
+
+        private void checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (nepokretni.Checked)
             {
-                dodaj_starca.Show();
-                pokretni.Show();
-                nepokretni.Show();
-                dataGridView.Show();
-                izbrisi.Show();
-                filter.Show();
+                pokretni.Checked = false;
+                izbor = odjeli.nepokretni;
+            }
+            else if (pokretni.Checked)
+            {
+                nepokretni.Checked = false;
+                izbor = odjeli.pokretni;
             }
             else
             {
-                dodaj_starca.Hide();
-                pokretni.Hide();
-                nepokretni.Hide();
-                dataGridView.Hide();
-                izbrisi.Hide();
-                filter.Hide();
+                izbor = odjeli.oboje;
             }
+
+            napuni();
         }
 
         public void napuni(string sql = "")
@@ -76,7 +92,7 @@ namespace test_baza_aplikacija
 
             if (izbor == odjeli.pokretni)
             {
-                naziv_odjela = " and o.naziv = 'Pokretni' ";    
+                naziv_odjela = " and o.naziv = 'Pokretni' ";
             }
             else if (izbor == odjeli.nepokretni)
             {
@@ -113,72 +129,10 @@ namespace test_baza_aplikacija
             connection.Close();
         }
 
-        //starčeki
-        private void button1_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e)
         {
-            //izbor = odjeli.oboje;
-            //if (forma_sobe)
-            //{
-            //    sobe.Hide();
-            //}
-            //skrij_pokazi(true);
-
-            //napuni();
-            starceki starceki = new starceki(connection, this);
-        }
-
-        //dodaj
-        //private void button5_Click(object sender, EventArgs e)
-        //{
-        //    StarcekAU starcek = new StarcekAU(this);
-        //    starcek.Show();
-        //}
-
-        private void checkBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (nepokretni.Checked)
-            {
-                pokretni.Checked = false;
-                izbor = odjeli.nepokretni;
-            }
-            else if (pokretni.Checked)
-            {
-                nepokretni.Checked = false;
-                izbor = odjeli.pokretni;
-            }
-            else
-            {
-                izbor = odjeli.oboje;
-            }
-
-            napuni();
-        }
-
-        //private void dataGridView1_DoubleCellClick(object sender, DataGridViewCellMouseEventArgs e)
-        //{
-        //    StarcekAU starcek = new StarcekAU(e.RowIndex, this, this.dataGridView);
-        //    starcek.Show();
-        //}
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            izbrisi.Enabled = true;
-            izbrisi.Show();
-        }
-
-        private void natrag_Click(object sender, EventArgs e)
-        {
-            parent_form.prikazi_ovu_formu();
-            user_closing = false;
-            this.Close();
-        }
-
-        private void form_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing && user_closing)
-            {
-                parent_form.Close();
-            }
+            StarcekAU starcek = new StarcekAU(this);
+            starcek.Show();
         }
 
         private void izbrisi_Click(object sender, EventArgs e)
@@ -211,37 +165,6 @@ namespace test_baza_aplikacija
             }
         }
 
-        private void sobe_Click(object sender, EventArgs e)
-        {
-            if (forma_sobe == false)
-            {
-                sobe = new Sobe(this);
-                sobe.StartPosition = FormStartPosition.Manual;
-                Point point = this.Location;
-                point.Offset(225, 32);
-                sobe.Location = point;
-                forma_sobe = true;
-            }
-            
-            if (ima_promjena)
-            {
-                sobe.napuni_oba_viewa();
-                ima_promjena = false;
-            }
-
-            skrij_pokazi(false);
-            sobe.Show();
-        }
-
-        private void djelatnici_Click(object sender, EventArgs e)
-        {
-            djelatnici djelatnici = new djelatnici(this);
-            djelatnici.Show();
-            Point point = this.Location;
-            point.Offset(225, 32);
-            djelatnici.Location = point;
-        }
-
         private void data_filter(object sender, EventArgs e)
         {
             int broj;
@@ -262,5 +185,6 @@ namespace test_baza_aplikacija
             }
             napuni(sql);
         }
+
     }
 }

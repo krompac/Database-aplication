@@ -102,6 +102,12 @@
     <Compile Include="StarcekAU.Designer.cs">
       <DependentUpon>StarcekAU.cs</DependentUpon>
     </Compile>
+    <Compile Include="starceki.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="starceki.Designer.cs">
+      <DependentUpon>starceki.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Cistacica.resx">
       <DependentUpon>Cistacica.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StarcekAU.resx">
       <DependentUpon>StarcekAU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="starceki.resx">
+      <DependentUpon>starceki.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="project1_v1DataSet.xsc">
