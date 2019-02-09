@@ -30,231 +30,95 @@ namespace test_baza_aplikacija
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(glavna_forma));
-            this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.nepokretni = new System.Windows.Forms.CheckBox();
-            this.pokretni = new System.Windows.Forms.CheckBox();
-            this.dodaj_starca = new System.Windows.Forms.Button();
-            this.izbrisi = new System.Windows.Forms.Button();
-            this.filter = new System.Windows.Forms.TextBox();
+            this.natrag = new System.Windows.Forms.Button();
+            this.starceki_gumb = new System.Windows.Forms.Button();
+            this.sobe_gumb = new System.Windows.Forms.Button();
+            this.djelatnici_gumb = new System.Windows.Forms.Button();
+            this.sobe_uc1 = new test_baza_aplikacija.Sobe();
             this.starceki1 = new test_baza_aplikacija.starceki();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.djelatnik1 = new test_baza_aplikacija.djelatnik();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dataGridView
-            // 
-            this.dataGridView.AllowUserToAddRows = false;
-            this.dataGridView.AllowUserToDeleteRows = false;
-            this.dataGridView.AllowUserToResizeColumns = false;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column7,
-            this.ID});
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle16;
-            resources.ApplyResources(this.dataGridView, "dataGridView");
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.ReadOnly = true;
-            this.dataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellClick);
-            // 
-            // Column1
-            // 
-            resources.ApplyResources(this.Column1, "Column1");
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            resources.ApplyResources(this.Column2, "Column2");
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            resources.ApplyResources(this.Column3, "Column3");
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            resources.ApplyResources(this.Column4, "Column4");
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            resources.ApplyResources(this.Column5, "Column5");
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            resources.ApplyResources(this.Column7, "Column7");
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ID
-            // 
-            resources.ApplyResources(this.ID, "ID");
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.flowLayoutPanel1.Controls.Add(this.button4);
-            this.flowLayoutPanel1.Controls.Add(this.button1);
-            this.flowLayoutPanel1.Controls.Add(this.button3);
-            this.flowLayoutPanel1.Controls.Add(this.button2);
+            this.flowLayoutPanel1.Controls.Add(this.natrag);
+            this.flowLayoutPanel1.Controls.Add(this.starceki_gumb);
+            this.flowLayoutPanel1.Controls.Add(this.sobe_gumb);
+            this.flowLayoutPanel1.Controls.Add(this.djelatnici_gumb);
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
-            // button4
+            // natrag
             // 
-            resources.ApplyResources(this.button4, "button4");
-            this.button4.Name = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.natrag_Click);
+            resources.ApplyResources(this.natrag, "natrag");
+            this.natrag.Name = "natrag";
+            this.natrag.UseVisualStyleBackColor = true;
+            this.natrag.Click += new System.EventHandler(this.natrag_Click);
             // 
-            // button1
+            // starceki_gumb
             // 
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveBorder;
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            resources.ApplyResources(this.starceki_gumb, "starceki_gumb");
+            this.starceki_gumb.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveBorder;
+            this.starceki_gumb.Name = "starceki_gumb";
+            this.starceki_gumb.UseVisualStyleBackColor = true;
+            this.starceki_gumb.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button3
+            // sobe_gumb
             // 
-            resources.ApplyResources(this.button3, "button3");
-            this.button3.Name = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.sobe_Click);
-            this.button3.GotFocus += new System.EventHandler(this.sobe_Click);
+            resources.ApplyResources(this.sobe_gumb, "sobe_gumb");
+            this.sobe_gumb.Name = "sobe_gumb";
+            this.sobe_gumb.UseVisualStyleBackColor = true;
+            this.sobe_gumb.Click += new System.EventHandler(this.sobe_Click);
             // 
-            // button2
+            // djelatnici_gumb
             // 
-            resources.ApplyResources(this.button2, "button2");
-            this.button2.Name = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.djelatnici_Click);
+            resources.ApplyResources(this.djelatnici_gumb, "djelatnici_gumb");
+            this.djelatnici_gumb.Name = "djelatnici_gumb";
+            this.djelatnici_gumb.UseVisualStyleBackColor = true;
+            this.djelatnici_gumb.Click += new System.EventHandler(this.djelatnici_Click);
             // 
-            // nepokretni
+            // sobe_uc1
             // 
-            resources.ApplyResources(this.nepokretni, "nepokretni");
-            this.nepokretni.Name = "nepokretni";
-            this.nepokretni.UseVisualStyleBackColor = true;
-            this.nepokretni.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
-            // 
-            // pokretni
-            // 
-            resources.ApplyResources(this.pokretni, "pokretni");
-            this.pokretni.Name = "pokretni";
-            this.pokretni.UseVisualStyleBackColor = true;
-            this.pokretni.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
-            // 
-            // dodaj_starca
-            // 
-            resources.ApplyResources(this.dodaj_starca, "dodaj_starca");
-            this.dodaj_starca.Name = "dodaj_starca";
-            this.dodaj_starca.UseVisualStyleBackColor = true;
-            // 
-            // izbrisi
-            // 
-            resources.ApplyResources(this.izbrisi, "izbrisi");
-            this.izbrisi.Name = "izbrisi";
-            this.izbrisi.UseVisualStyleBackColor = true;
-            this.izbrisi.Click += new System.EventHandler(this.izbrisi_Click);
-            // 
-            // filter
-            // 
-            this.filter.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            resources.ApplyResources(this.filter, "filter");
-            this.filter.Name = "filter";
-            this.filter.TextChanged += new System.EventHandler(this.data_filter);
+            resources.ApplyResources(this.sobe_uc1, "sobe_uc1");
+            this.sobe_uc1.Name = "sobe_uc1";
             // 
             // starceki1
             // 
             resources.ApplyResources(this.starceki1, "starceki1");
             this.starceki1.Name = "starceki1";
             // 
+            // djelatnik1
+            // 
+            resources.ApplyResources(this.djelatnik1, "djelatnik1");
+            this.djelatnik1.Name = "djelatnik1";
+            // 
             // glavna_forma
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.starceki1);
-            this.Controls.Add(this.filter);
-            this.Controls.Add(this.izbrisi);
-            this.Controls.Add(this.dodaj_starca);
-            this.Controls.Add(this.pokretni);
-            this.Controls.Add(this.nepokretni);
+            this.Controls.Add(this.djelatnik1);
+            this.Controls.Add(this.sobe_uc1);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.dataGridView);
+            this.Controls.Add(this.starceki1);
             this.Name = "glavna_forma";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.form_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dataGridView;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private CheckBox nepokretni;
-        private CheckBox pokretni;
-        private Button dodaj_starca;
-        private Button izbrisi;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column4;
-        private DataGridViewTextBoxColumn Column5;
-        private DataGridViewTextBoxColumn Column7;
-        private DataGridViewTextBoxColumn ID;
-        private TextBox filter;
+        private Button starceki_gumb;
+        private Button djelatnici_gumb;
+        private Button sobe_gumb;
+        private Button natrag;
         private starceki starceki1;
+        private Sobe sobe_uc1;
+        private djelatnik djelatnik1;
     }
 }

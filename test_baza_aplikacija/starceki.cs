@@ -24,33 +24,25 @@ namespace test_baza_aplikacija
         private odjeli izbor;
         public int line_number;
         private glavna_forma parent_form;
-        private bool user_closing;
-
-        private Sobe sobe;
-        private bool forma_sobe;
-        public bool ima_promjena;
 
         public starceki()
         {
             InitializeComponent();
         }
 
-        public starceki(MySqlConnection sqlConnection, glavna_forma form1)
+        public void load_starceki(MySqlConnection sqlConnection, glavna_forma form1)
         {
-            InitializeComponent();
-
             this.connection = sqlConnection;
             parent_form = form1;
             this.Show();
             izbor = odjeli.oboje;
             napuni();
-
-            forma_sobe = false;
-            user_closing = true;
         }
 
-        public void starceki_Load(object sender, EventArgs e)
+        public void clear_datagrid()
         {
+            this.dataGridView.Rows.Clear();
+            this.dataGridView.Refresh();
         }
 
         private void dataGridView1_DoubleCellClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -64,7 +56,6 @@ namespace test_baza_aplikacija
             izbrisi.Enabled = true;
             izbrisi.Show();
         }
-
 
         private void checkBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -84,6 +75,31 @@ namespace test_baza_aplikacija
             }
 
             napuni();
+        }
+
+        public void set_line_number()
+        {
+            connection.Open();
+            MySqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "select id from stara_osoba order by id desc limit 1";
+            cmd.ExecuteNonQuery();
+            DataTable dt = new DataTable();
+            MySqlDataAdapter DA = new MySqlDataAdapter(cmd);
+            DA.Fill(dt);
+
+            try
+            {
+                Int32.TryParse(dt.Rows[0]["id"].ToString(), out line_number);
+            }
+            catch
+            {
+                line_number = 0;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            
         }
 
         public void napuni(string sql = "")
@@ -131,6 +147,7 @@ namespace test_baza_aplikacija
 
         private void button5_Click(object sender, EventArgs e)
         {
+            set_line_number();
             StarcekAU starcek = new StarcekAU(this);
             starcek.Show();
         }

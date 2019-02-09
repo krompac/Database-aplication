@@ -1,13 +1,13 @@
 ﻿namespace test_baza_aplikacija
 {
-    partial class djelatnici
+    partial class djelatnik
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,18 +20,14 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.dodaj = new System.Windows.Forms.Button();
-            this.smjene = new System.Windows.Forms.Button();
-            this.pregled_poslova = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dataGridDjelatnici = new System.Windows.Forms.DataGridView();
             this.ime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,49 +37,15 @@
             this.dat_zaposljenja = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.smjena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mjesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.izbrisi = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.pregled_poslova = new System.Windows.Forms.Button();
+            this.smjene = new System.Windows.Forms.Button();
+            this.dodaj = new System.Windows.Forms.Button();
             this.place = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.izbrisi = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDjelatnici)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dodaj
-            // 
-            this.dodaj.Location = new System.Drawing.Point(12, 52);
-            this.dodaj.Name = "dodaj";
-            this.dodaj.Size = new System.Drawing.Size(82, 35);
-            this.dodaj.TabIndex = 0;
-            this.dodaj.Text = "Dodaj";
-            this.dodaj.UseVisualStyleBackColor = true;
-            // 
-            // smjene
-            // 
-            this.smjene.Location = new System.Drawing.Point(439, 2);
-            this.smjene.Name = "smjene";
-            this.smjene.Size = new System.Drawing.Size(114, 38);
-            this.smjene.TabIndex = 1;
-            this.smjene.Text = "Pregledaj smjene";
-            this.smjene.UseVisualStyleBackColor = true;
-            // 
-            // pregled_poslova
-            // 
-            this.pregled_poslova.Location = new System.Drawing.Point(734, 2);
-            this.pregled_poslova.Name = "pregled_poslova";
-            this.pregled_poslova.Size = new System.Drawing.Size(114, 38);
-            this.pregled_poslova.TabIndex = 2;
-            this.pregled_poslova.Text = "Pregled poslova";
-            this.pregled_poslova.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.comboBox1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(734, 62);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(117, 21);
-            this.comboBox1.TabIndex = 3;
-            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.combobox_changed);
             // 
             // dataGridDjelatnici
             // 
@@ -101,13 +63,13 @@
             this.dat_zaposljenja,
             this.smjena,
             this.mjesto});
-            this.dataGridDjelatnici.Location = new System.Drawing.Point(12, 96);
+            this.dataGridDjelatnici.Location = new System.Drawing.Point(19, 101);
             this.dataGridDjelatnici.Name = "dataGridDjelatnici";
             this.dataGridDjelatnici.ReadOnly = true;
             this.dataGridDjelatnici.RowHeadersWidth = 37;
             this.dataGridDjelatnici.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridDjelatnici.Size = new System.Drawing.Size(839, 342);
-            this.dataGridDjelatnici.TabIndex = 4;
+            this.dataGridDjelatnici.TabIndex = 12;
             // 
             // ime
             // 
@@ -157,49 +119,85 @@
             this.mjesto.Name = "mjesto";
             this.mjesto.ReadOnly = true;
             // 
-            // izbrisi
+            // comboBox1
             // 
-            this.izbrisi.Location = new System.Drawing.Point(118, 62);
-            this.izbrisi.Name = "izbrisi";
-            this.izbrisi.Size = new System.Drawing.Size(52, 23);
-            this.izbrisi.TabIndex = 5;
-            this.izbrisi.Text = "Izbriši";
-            this.izbrisi.UseVisualStyleBackColor = true;
+            this.comboBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.comboBox1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(741, 67);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(117, 21);
+            this.comboBox1.TabIndex = 11;
+            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.combobox_changed);
+            // 
+            // pregled_poslova
+            // 
+            this.pregled_poslova.Location = new System.Drawing.Point(741, 7);
+            this.pregled_poslova.Name = "pregled_poslova";
+            this.pregled_poslova.Size = new System.Drawing.Size(114, 38);
+            this.pregled_poslova.TabIndex = 10;
+            this.pregled_poslova.Text = "Pregled poslova";
+            this.pregled_poslova.UseVisualStyleBackColor = true;
+            // 
+            // smjene
+            // 
+            this.smjene.Location = new System.Drawing.Point(446, 7);
+            this.smjene.Name = "smjene";
+            this.smjene.Size = new System.Drawing.Size(114, 38);
+            this.smjene.TabIndex = 9;
+            this.smjene.Text = "Pregledaj smjene";
+            this.smjene.UseVisualStyleBackColor = true;
+            // 
+            // dodaj
+            // 
+            this.dodaj.Location = new System.Drawing.Point(19, 57);
+            this.dodaj.Name = "dodaj";
+            this.dodaj.Size = new System.Drawing.Size(82, 35);
+            this.dodaj.TabIndex = 8;
+            this.dodaj.Text = "Dodaj";
+            this.dodaj.UseVisualStyleBackColor = true;
+            // 
+            // place
+            // 
+            this.place.Location = new System.Drawing.Point(595, 7);
+            this.place.Name = "place";
+            this.place.Size = new System.Drawing.Size(114, 38);
+            this.place.TabIndex = 15;
+            this.place.Text = "Pregled place";
+            this.place.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(562, 57);
+            this.textBox1.Location = new System.Drawing.Point(569, 62);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(140, 26);
-            this.textBox1.TabIndex = 6;
+            this.textBox1.TabIndex = 14;
             this.textBox1.TextChanged += new System.EventHandler(this.text_changed);
             // 
-            // place
+            // izbrisi
             // 
-            this.place.Location = new System.Drawing.Point(588, 2);
-            this.place.Name = "place";
-            this.place.Size = new System.Drawing.Size(114, 38);
-            this.place.TabIndex = 7;
-            this.place.Text = "Pregled place";
-            this.place.UseVisualStyleBackColor = true;
+            this.izbrisi.Location = new System.Drawing.Point(125, 67);
+            this.izbrisi.Name = "izbrisi";
+            this.izbrisi.Size = new System.Drawing.Size(52, 23);
+            this.izbrisi.TabIndex = 13;
+            this.izbrisi.Text = "Izbriši";
+            this.izbrisi.UseVisualStyleBackColor = true;
             // 
-            // djelatnici
+            // djelatnik
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(877, 450);
-            this.Controls.Add(this.place);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.izbrisi);
             this.Controls.Add(this.dataGridDjelatnici);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.pregled_poslova);
             this.Controls.Add(this.smjene);
             this.Controls.Add(this.dodaj);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "djelatnici";
-            this.Text = "djelatnici";
+            this.Controls.Add(this.place);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.izbrisi);
+            this.Name = "djelatnik";
+            this.Size = new System.Drawing.Size(877, 450);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDjelatnici)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -208,10 +206,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button dodaj;
-        private System.Windows.Forms.Button smjene;
-        private System.Windows.Forms.Button pregled_poslova;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DataGridView dataGridDjelatnici;
         private System.Windows.Forms.DataGridViewTextBoxColumn ime;
         private System.Windows.Forms.DataGridViewTextBoxColumn prezime;
@@ -221,8 +215,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dat_zaposljenja;
         private System.Windows.Forms.DataGridViewTextBoxColumn smjena;
         private System.Windows.Forms.DataGridViewTextBoxColumn mjesto;
-        private System.Windows.Forms.Button izbrisi;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button pregled_poslova;
+        private System.Windows.Forms.Button smjene;
+        private System.Windows.Forms.Button dodaj;
         private System.Windows.Forms.Button place;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button izbrisi;
     }
 }

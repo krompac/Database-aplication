@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,21 +11,32 @@ using MySql.Data.MySqlClient;
 
 namespace test_baza_aplikacija
 {
-    public partial class djelatnici : Form
+    public partial class djelatnik : UserControl
     {
         MySqlConnection connection;
         private string sql_combo = "";
         private string sql_filter = "";
 
-        public djelatnici(glavna_forma forma)
+        public djelatnik()
         {
             InitializeComponent();
+        }
+
+        public void load_djelatnici(glavna_forma forma)
+        {
+            this.Show();
             this.connection = forma.connection;
             this.napuni_djelatnike();
             this.napuni_combobox();
         }
 
-        public void napuni_djelatnike()
+        public void clear_datagridview()
+        {
+            this.dataGridDjelatnici.Rows.Clear();
+            this.dataGridDjelatnici.Refresh();
+        }
+
+        private void napuni_djelatnike()
         {
             dataGridDjelatnici.Rows.Clear();
             connection.Open();
@@ -49,7 +60,7 @@ namespace test_baza_aplikacija
             {
                 vrijeme = dt.Rows[i]["datum_zaposlenja"].ToString();
                 vrijeme = vrijeme.Substring(0, 9);
-                dataGridDjelatnici.Rows.Add(dt.Rows[i]["ime"], dt.Rows[i]["prezime"], dt.Rows[i]["Radna jedinica"], dt.Rows[i]["broj_mobitela"], 
+                dataGridDjelatnici.Rows.Add(dt.Rows[i]["ime"], dt.Rows[i]["prezime"], dt.Rows[i]["Radna jedinica"], dt.Rows[i]["broj_mobitela"],
                                          dt.Rows[i]["email"], vrijeme, dt.Rows[i]["smjena"], dt.Rows[i]["mjesto_stanovanja"], dt.Rows[i]["id"]);
             }
         }
@@ -109,5 +120,6 @@ namespace test_baza_aplikacija
 
             napuni_djelatnike();
         }
+
     }
 }

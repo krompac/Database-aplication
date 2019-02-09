@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +11,10 @@ using MySql.Data.MySqlClient;
 
 namespace test_baza_aplikacija
 {
-    public partial class Sobe : Form
+    public partial class Sobe : UserControl
     {
         private MySqlConnection connection;
-        private glavna_forma Forma2;
+        private bool second_load = false;
 
         private List<string> cb = new List<string>()
         {
@@ -24,6 +24,11 @@ namespace test_baza_aplikacija
             " and broj_praznih_kreveta(s.Broj_sobe) = 0 "
         };
 
+        public Sobe()
+        {
+            InitializeComponent();
+        }
+
         private enum krevetnost_sobe
         {
             Jednokrevetna = 1,
@@ -31,20 +36,31 @@ namespace test_baza_aplikacija
             Trokrevetna = 3
         };
 
-        public Sobe(glavna_forma form)
+        public void load_sobe(glavna_forma form)
         {
-            InitializeComponent();
             this.connection = form.connection;
-            
-            Forma2 = form;
+            this.Show();
+
             combonepok.SelectedIndex = 0;
             combopok.SelectedIndex = 0;
+
+            if (!second_load)
+            {
+                second_load = true;
+            }
+            else
+            {
+                napuni(dataGridView1, 1, combopok);
+                napuni(dataGridView2, 2, combonepok);
+            }
         }
-        
-        public void napuni_oba_viewa()
+
+        public void clear_datagrid_views()
         {
-            napuni(dataGridView1, 1, combopok);
-            napuni(dataGridView2, 2, combonepok);
+            this.dataGridView1.Rows.Clear();
+            this.dataGridView1.Refresh();
+            this.dataGridView2.Rows.Clear();
+            this.dataGridView2.Refresh();
         }
 
         private void napuni(DataGridView dataGridView, int broj_odjela, ComboBox pok, int br_sobe = 0, string sobarica_sql = "")
@@ -55,7 +71,7 @@ namespace test_baza_aplikacija
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select s.Broj_sobe as 'Broj sobe', s.broj_kreveta as 'Broj kreveta',  s.broj_kreveta - broj_praznih_kreveta(s.Broj_sobe) as 'Slobodni kreveti', " +
                               "djelatnik.ime, djelatnik.prezime from soba s " +
-                              "left join djelatnik on s.sobarica_id = djelatnik.ID where s.odjel_id = " + broj_odjela.ToString() + sobarica_sql + cb[pok.SelectedIndex] + 
+                              "left join djelatnik on s.sobarica_id = djelatnik.ID where s.odjel_id = " + broj_odjela.ToString() + sobarica_sql + cb[pok.SelectedIndex] +
                               " order by s.Broj_sobe;";
 
             cmd.ExecuteNonQuery();
@@ -129,7 +145,7 @@ namespace test_baza_aplikacija
             }
         }
 
-        private void textPok_changed(object sender, EventArgs e)
+        private void change_data(object sender, EventArgs e)
         {
             if (sender == trazi_pok || sender == combopok)
             {

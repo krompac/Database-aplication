@@ -130,7 +130,6 @@ namespace test_baza_aplikacija
                     connection.Close();
 
                     Form2.napuni();
-                    Form2.ima_promjena = true;
                     this.Close();
                 }
                 else

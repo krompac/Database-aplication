@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using System.Data;
 using MySql.Data.MySqlClient;
 
 namespace test_baza_aplikacija
@@ -34,21 +33,16 @@ namespace test_baza_aplikacija
         public Login()
         {
             InitializeComponent();
-            
             label3.Text = "";
             InitializeDatabase();
         }
-
-        int i;
+        
         private void button1_Click(object sender, EventArgs e)
         {
-            i = 0;
-
             if (connection.State == ConnectionState.Open)
             {
                 connection.Close();
             }
-
             connection.Open();
 
             MySqlCommand cmd = connection.CreateCommand();
@@ -58,13 +52,12 @@ namespace test_baza_aplikacija
             DataTable dt = new DataTable();
             MySqlDataAdapter DA = new MySqlDataAdapter(cmd);
             DA.Fill(dt);
-            i = Convert.ToInt32(dt.Rows.Count);
+            int i = Convert.ToInt32(dt.Rows.Count);
             
             if (i != 0)
             {
                 label3.Text = "Uspješna prijava!!";
                 Prikazi_drugu_formu();
-                //this.Hide();
                 connection.Close();
             }
             else
@@ -92,7 +85,5 @@ namespace test_baza_aplikacija
 
             textBox1.Focus();
         }
-
     }
-
 }

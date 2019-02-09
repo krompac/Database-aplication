@@ -212,7 +212,6 @@
             this.Controls.Add(this.dataGridView);
             this.Name = "starceki";
             this.Size = new System.Drawing.Size(877, 450);
-            this.Load += new System.EventHandler(this.starceki_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
