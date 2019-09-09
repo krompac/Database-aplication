@@ -1,45 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
-namespace test_baza_aplikacija
+namespace NursingHomeApplication
 {
-    public partial class starceki : UserControl
+    public partial class Patients : UserControl
     {
-        private enum odjeli
+        private enum Departments
         {
-            pokretni,
-            nepokretni,
-            oboje
+            mobile,
+            immobile,
+            both
         };
 
         public MySqlConnection connection;
-        private odjeli izbor;
-        public int line_number;
-        private glavna_forma parent_form;
+        private Departments department;
+        public int lineNumber;
+        private MainForm mainForm;
 
-        public starceki()
+        public Patients()
         {
             InitializeComponent();
         }
 
-        public void load_starceki(MySqlConnection sqlConnection, glavna_forma form1)
+        public void LoadPatients(MySqlConnection sqlConnection, MainForm form)
         {
             this.connection = sqlConnection;
-            parent_form = form1;
+            mainForm = form;
             this.Show();
-            izbor = odjeli.oboje;
-            napuni();
+            department = Departments.both;
+            FillView();
         }
 
-        public void clear_datagrid()
+        public void ClearView()
         {
             this.dataGridView.Rows.Clear();
             this.dataGridView.Refresh();
@@ -47,7 +41,7 @@ namespace test_baza_aplikacija
 
         private void dataGridView1_DoubleCellClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            StarcekAU starcek = new StarcekAU(e.RowIndex, this, this.dataGridView);
+            PatientForm starcek = new PatientForm(e.RowIndex, this, this.dataGridView);
             starcek.Show();
         }
 
@@ -62,22 +56,22 @@ namespace test_baza_aplikacija
             if (nepokretni.Checked)
             {
                 pokretni.Checked = false;
-                izbor = odjeli.nepokretni;
+                department = Departments.immobile;
             }
             else if (pokretni.Checked)
             {
                 nepokretni.Checked = false;
-                izbor = odjeli.pokretni;
+                department = Departments.mobile;
             }
             else
             {
-                izbor = odjeli.oboje;
+                department = Departments.both;
             }
 
-            napuni();
+            FillView();
         }
 
-        public void set_line_number()
+        public void SetLineNumber()
         {
             connection.Open();
             MySqlCommand cmd = connection.CreateCommand();
@@ -89,28 +83,27 @@ namespace test_baza_aplikacija
 
             try
             {
-                Int32.TryParse(dt.Rows[0]["id"].ToString(), out line_number);
+                Int32.TryParse(dt.Rows[0]["id"].ToString(), out lineNumber);
             }
             catch
             {
-                line_number = 0;
+                lineNumber = 0;
             }
             finally
             {
                 connection.Close();
             }
-            
         }
 
-        public void napuni(string sql = "")
+        public void FillView(string sql = "")
         {
             string naziv_odjela = "";
 
-            if (izbor == odjeli.pokretni)
+            if (department == Departments.mobile)
             {
                 naziv_odjela = " and o.naziv = 'Pokretni' ";
             }
-            else if (izbor == odjeli.nepokretni)
+            else if (department == Departments.immobile)
             {
                 naziv_odjela = " and o.naziv = 'Polupokretni/Nepokretni'";
             }
@@ -130,11 +123,11 @@ namespace test_baza_aplikacija
             MySqlDataAdapter DA = new MySqlDataAdapter(cmd);
             DA.Fill(dt);
 
-            line_number = dt.Rows.Count;
+            lineNumber = dt.Rows.Count;
             int i;
             string vrijeme = "";
 
-            for (i = 0; i < line_number; i++)
+            for (i = 0; i < lineNumber; i++)
             {
                 vrijeme = dt.Rows[i]["Datum useljenja"].ToString();
                 vrijeme = vrijeme.Substring(0, 9);
@@ -147,50 +140,48 @@ namespace test_baza_aplikacija
 
         private void button5_Click(object sender, EventArgs e)
         {
-            set_line_number();
-            StarcekAU starcek = new StarcekAU(this);
+            SetLineNumber();
+            PatientForm starcek = new PatientForm(this);
             starcek.Show();
         }
 
-        private void izbrisi_Click(object sender, EventArgs e)
+        private void DeleteClick(object sender, EventArgs e)
         {
             if (dataGridView.SelectedCells.Count > 0)
             {
-                var pitanje = MessageBox.Show("Želite li izbrisati odabrane ćelije?", "Brisanje ćelija", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var question = MessageBox.Show("Želite li izbrisati odabrane ćelije?", "Brisanje ćelija", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (pitanje == DialogResult.Yes)
+                if (question == DialogResult.Yes)
                 {
-
-                    int cell_count = dataGridView.SelectedCells.Count;
-                    int row_index;
+                    int cellCount = dataGridView.SelectedCells.Count;
+                    int rowIndex;
 
                     connection.Open();
 
-                    for (int i = 0; i < cell_count; i++)
+                    for (int i = 0; i < cellCount; i++)
                     {
-                        row_index = dataGridView.SelectedCells[i].RowIndex;
+                        rowIndex = dataGridView.SelectedCells[i].RowIndex;
                         MySqlCommand cmd = connection.CreateCommand();
                         cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = "delete from stara_osoba where id = " + dataGridView.Rows[row_index].Cells[6].Value.ToString() + ";";
+                        cmd.CommandText = "delete from stara_osoba where id = " + dataGridView.Rows[rowIndex].Cells[6].Value.ToString() + ";";
 
                         cmd.ExecuteNonQuery();
                     }
 
                     connection.Close();
-                    napuni();
+                    FillView();
                 }
             }
         }
 
-        private void data_filter(object sender, EventArgs e)
+        private void DataFilter(object sender, EventArgs e)
         {
-            int broj;
-            bool je_broj = Int32.TryParse(filter.Text, out broj);
+            bool isNumber = Int32.TryParse(filter.Text, out int number);
             string sql = "";
 
-            if (je_broj)
+            if (isNumber)
             {
-                sql = " and s.soba_id = " + broj.ToString() + " ";
+                sql = " and s.soba_id = " + number.ToString() + " ";
             }
             else
             {
@@ -200,8 +191,7 @@ namespace test_baza_aplikacija
                     sql += filter.Text + "%' or CONCAT(s.prezime, ' ', s.ime) like '%" + filter.Text + "%' or s.kontakt_osoba like '%" + filter.Text + "%') ";
                 }
             }
-            napuni(sql);
+            FillView(sql);
         }
-
     }
 }

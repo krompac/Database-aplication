@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace test_baza_aplikacija.Properties
+namespace NursingHomeApplication.Properties
 {
 
 

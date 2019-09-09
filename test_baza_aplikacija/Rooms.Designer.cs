@@ -1,6 +1,6 @@
-﻿namespace test_baza_aplikacija
+﻿namespace NursingHomeApplication
 {
-    partial class Sobe
+    partial class Rooms
     {
         /// <summary> 
         /// Required designer variable.
@@ -126,7 +126,7 @@
             this.combonepok.Name = "combonepok";
             this.combonepok.Size = new System.Drawing.Size(116, 21);
             this.combonepok.TabIndex = 17;
-            this.combonepok.SelectedIndexChanged += new System.EventHandler(this.change_data);
+            this.combonepok.SelectedIndexChanged += new System.EventHandler(this.ChangeData);
             // 
             // combopok
             // 
@@ -140,7 +140,7 @@
             this.combopok.Name = "combopok";
             this.combopok.Size = new System.Drawing.Size(116, 21);
             this.combopok.TabIndex = 16;
-            this.combopok.SelectedIndexChanged += new System.EventHandler(this.change_data);
+            this.combopok.SelectedIndexChanged += new System.EventHandler(this.ChangeData);
             // 
             // trazi_nepok
             // 
@@ -149,7 +149,7 @@
             this.trazi_nepok.Name = "trazi_nepok";
             this.trazi_nepok.Size = new System.Drawing.Size(109, 26);
             this.trazi_nepok.TabIndex = 15;
-            this.trazi_nepok.TextChanged += new System.EventHandler(this.change_data);
+            this.trazi_nepok.TextChanged += new System.EventHandler(this.ChangeData);
             // 
             // trazi_pok
             // 
@@ -158,7 +158,7 @@
             this.trazi_pok.Name = "trazi_pok";
             this.trazi_pok.Size = new System.Drawing.Size(109, 26);
             this.trazi_pok.TabIndex = 14;
-            this.trazi_pok.TextChanged += new System.EventHandler(this.change_data);
+            this.trazi_pok.TextChanged += new System.EventHandler(this.ChangeData);
             // 
             // dataGridView2
             // 

@@ -1,46 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
-namespace test_baza_aplikacija
+namespace NursingHomeApplication
 {
-    public partial class StarcekAU : Form
+    public partial class PatientForm : Form
     {
         private MySqlConnection connection;
-        private int line_number;
-        private string combobox_first_item = "";
-        private starceki Form2;
-        private bool uredi = false;
+        private int lineNumber;
+        private string comboBoxFirstItem = "";
+        private Patients Form2;
+        private bool edit = false;
 
-        public StarcekAU(starceki forma2)
+        public PatientForm(Patients forma2)
         {
             InitializeComponent();
             this.connection = forma2.connection;
-            this.line_number = forma2.line_number + 1;
+            this.lineNumber = forma2.lineNumber + 1;
             Form2 = forma2;
             this.napuni_combobox();
         }
 
-        public StarcekAU(int row_index, starceki forma2, DataGridView data)
+        public PatientForm(int rowIndex, Patients forma2, DataGridView data)
         {
             InitializeComponent();
             this.connection = forma2.connection;
             this.Form2 = forma2;
-            this.line_number = Int32.Parse(data.Rows[row_index].Cells[6].Value.ToString());
+            this.lineNumber = Int32.Parse(data.Rows[rowIndex].Cells[6].Value.ToString());
             this.gumb_dodaj.Text = "Uredi";
-            uredi = true;
+            edit = true;
 
             connection.Open();
             MySqlCommand cmd = connection.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from stara_osoba where ID = " + this.line_number + ";";
+            cmd.CommandText = "select * from stara_osoba where ID = " + this.lineNumber + ";";
 
             cmd.ExecuteNonQuery();
             DataTable dt = new DataTable();
@@ -65,7 +61,7 @@ namespace test_baza_aplikacija
             mySqlData.Fill(dt);
 
             br_sobe = $"{br_sobe,-4}";
-            combobox_first_item = br_sobe + " |   " + dt.Rows[0]["Naziv"].ToString();
+            comboBoxFirstItem = br_sobe + " |   " + dt.Rows[0]["Naziv"].ToString();
 
             connection.Close();
             napuni_combobox();
@@ -84,11 +80,11 @@ namespace test_baza_aplikacija
             string broj_sobe = "";
             string kontakt_osoba = "";
             string kontakt_broj = "";
-            bool dobar_unos = true;
+            bool goodInput = true;
 
             try
             {
-                id = line_number.ToString() + ", ";
+                id = lineNumber.ToString() + ", ";
                 ime = "'" + textIme.Text + "', ";
                 prezime = "'" + textPrezime.Text + "', ";
                 datum_rodjenja = "'" + DateTime.Parse(dat_useljenja.Text).ToString("yyyy-MM-dd") + "', ";
@@ -102,24 +98,24 @@ namespace test_baza_aplikacija
             catch
             {
                 var Result = MessageBox.Show("Nisu popunjena sva polja!");
-                dobar_unos = false;
+                goodInput = false;
             }
             finally
             {
-                if (dobar_unos)
+                if (goodInput)
                 {
                     connection.Open();
                     MySqlCommand cmd = connection.CreateCommand();
                     cmd.CommandType = CommandType.Text;
 
-                    if (uredi == false)
+                    if (edit == false)
                     { 
                         cmd.CommandText = "insert into stara_osoba(ID, ime, prezime, god_rodjenja, spol, diabeticar, soba_id, kontakt_osoba, broj_mob_kontakt, datum_useljenja)" +
                                           " values(" + id + ime + prezime + datum_rodjenja + spol + dijabeticar + broj_sobe + kontakt_osoba + kontakt_broj + datum_useljenja + ");";
                     }
                     else
                     {
-                        id = line_number.ToString();
+                        id = lineNumber.ToString();
                         cmd.CommandText = "update stara_osoba set ime = " + ime + "prezime = " + prezime + "god_rodjenja = " + datum_rodjenja +
                                           " spol = " + spol + "diabeticar = " + dijabeticar + " soba_id = " + broj_sobe + " kontakt_osoba = " + kontakt_osoba +
                                           " broj_mob_kontakt = " + kontakt_broj + " datum_useljenja = " + datum_useljenja + 
@@ -129,12 +125,12 @@ namespace test_baza_aplikacija
 
                     connection.Close();
 
-                    Form2.napuni();
+                    Form2.FillView();
                     this.Close();
                 }
                 else
                 {
-                    dobar_unos = true;
+                    goodInput = true;
                 }
             }
         }
@@ -152,25 +148,24 @@ namespace test_baza_aplikacija
             DA.Fill(dt);
 
             int max = dt.Rows.Count;
-            int i;
-            string br_sobe;
-            bool uredi = combobox_first_item != "";
+            string roomNumber = "";
+            bool edit = comboBoxFirstItem != "";
 
-            HashSet<String> podaci = new HashSet<string>();
+            HashSet<String> data = new HashSet<string>();
 
-            if (uredi)
+            if (edit)
             {
-                podaci.Add(combobox_first_item);
+                data.Add(comboBoxFirstItem);
             }
 
-            for (i = 0; i < max; i++)
+            for (int i = 0; i < max; i++)
             {
-                br_sobe = dt.Rows[i]["Broj sobe"].ToString();
-                br_sobe = $"{br_sobe,-4}";
+                roomNumber = dt.Rows[i]["Broj sobe"].ToString();
+                roomNumber = $"{roomNumber,-4}";
 
-                podaci.Add(br_sobe +  " |   " + dt.Rows[i]["Odjel"].ToString());
+                data.Add(roomNumber +  " |   " + dt.Rows[i]["Odjel"].ToString());
             }
-            comboSoba.DataSource = podaci.ToList();
+            comboSoba.DataSource = data.ToList();
 
             connection.Close();
         }

@@ -1,8 +1,8 @@
 ﻿using System.Windows.Forms;
 
-namespace test_baza_aplikacija
+namespace NursingHomeApplication
 {
-    partial class glavna_forma
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,15 +30,15 @@ namespace test_baza_aplikacija
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(glavna_forma));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.natrag = new System.Windows.Forms.Button();
             this.starceki_gumb = new System.Windows.Forms.Button();
             this.sobe_gumb = new System.Windows.Forms.Button();
             this.djelatnici_gumb = new System.Windows.Forms.Button();
-            this.sobe_uc1 = new test_baza_aplikacija.Sobe();
-            this.starceki1 = new test_baza_aplikacija.starceki();
-            this.djelatnik1 = new test_baza_aplikacija.djelatnik();
+            this.sobe_uc1 = new NursingHomeApplication.Rooms();
+            this.starceki1 = new NursingHomeApplication.Patients();
+            this.djelatnik1 = new NursingHomeApplication.Employee();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -117,8 +117,8 @@ namespace test_baza_aplikacija
         private Button djelatnici_gumb;
         private Button sobe_gumb;
         private Button natrag;
-        private starceki starceki1;
-        private Sobe sobe_uc1;
-        private djelatnik djelatnik1;
+        private Patients starceki1;
+        private Rooms sobe_uc1;
+        private Employee djelatnik1;
     }
 }

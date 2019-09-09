@@ -1,4 +1,4 @@
-﻿namespace test_baza_aplikacija
+﻿namespace NursingHomeApplication
 {
     partial class Cistacica
     {

@@ -1,6 +1,6 @@
-﻿namespace test_baza_aplikacija
+﻿namespace NursingHomeApplication
 {
-    partial class StarcekAU
+    partial class PatientForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StarcekAU));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatientForm));
             this.slika = new System.Windows.Forms.PictureBox();
             this.unos_ime = new System.Windows.Forms.Label();
             this.unos_prezime = new System.Windows.Forms.Label();
@@ -166,11 +166,11 @@
             // 
             // groupBox1
             // 
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.kontakt_tel);
             this.groupBox1.Controls.Add(this.kontak_osoba);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
@@ -179,7 +179,7 @@
             resources.ApplyResources(this.dat_rodjenja, "dat_rodjenja");
             this.dat_rodjenja.Name = "dat_rodjenja";
             // 
-            // StarcekAU
+            // PatientForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -201,7 +201,7 @@
             this.Controls.Add(this.unos_prezime);
             this.Controls.Add(this.unos_ime);
             this.Controls.Add(this.slika);
-            this.Name = "StarcekAU";
+            this.Name = "PatientForm";
             ((System.ComponentModel.ISupportInitialize)(this.slika)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

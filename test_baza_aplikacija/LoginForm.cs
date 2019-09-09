@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
-namespace test_baza_aplikacija
+namespace NursingHomeApplication
 {
-    public partial class Login : Form
+    public partial class LoginForm : Form
     {
         private MySqlConnection connection;
         private string server;
@@ -30,7 +24,7 @@ namespace test_baza_aplikacija
             connection = new MySqlConnection(connectionString);
         }
 
-        public Login()
+        public LoginForm()
         {
             InitializeComponent();
             label3.Text = "";
@@ -57,7 +51,7 @@ namespace test_baza_aplikacija
             if (i != 0)
             {
                 label3.Text = "Uspješna prijava!!";
-                Prikazi_drugu_formu();
+                ShowMainForm();
                 connection.Close();
             }
             else
@@ -69,14 +63,14 @@ namespace test_baza_aplikacija
             connection.Close();
         }
 
-        private void Prikazi_drugu_formu()
+        private void ShowMainForm()
         {
-            Form form = new glavna_forma(connection, this);
+            Form form = new MainForm(connection, this);
             form.Show();
             this.Hide();
         }
 
-        public void prikazi_ovu_formu()
+        public void ShowMe()
         {
             this.Show();
             label3.Text = "";

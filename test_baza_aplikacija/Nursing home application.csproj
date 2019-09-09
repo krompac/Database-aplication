@@ -59,61 +59,64 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cistacica.cs">
+    <Compile Include="CleaningLadyForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Cistacica.Designer.cs">
-      <DependentUpon>Cistacica.cs</DependentUpon>
+    <Compile Include="CleaningLadyForm.Designer.cs">
+      <DependentUpon>CleaningLadyForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="djelatnik.cs">
+    <Compile Include="Employee.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="djelatnik.Designer.cs">
-      <DependentUpon>djelatnik.cs</DependentUpon>
+    <Compile Include="Employee.Designer.cs">
+      <DependentUpon>Employee.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="glavna_forma.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="glavna_forma.Designer.cs">
-      <DependentUpon>glavna_forma.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sobe.cs">
+    <Compile Include="Rooms.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Sobe.Designer.cs">
-      <DependentUpon>Sobe.cs</DependentUpon>
+    <Compile Include="Rooms.Designer.cs">
+      <DependentUpon>Rooms.cs</DependentUpon>
     </Compile>
-    <Compile Include="StarcekAU.cs">
+    <Compile Include="PatientForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StarcekAU.Designer.cs">
-      <DependentUpon>StarcekAU.cs</DependentUpon>
+    <Compile Include="PatientForm.Designer.cs">
+      <DependentUpon>PatientForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="starceki.cs">
+    <Compile Include="Patients.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="starceki.Designer.cs">
-      <DependentUpon>starceki.cs</DependentUpon>
+    <Compile Include="Patients.Designer.cs">
+      <DependentUpon>Patients.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Cistacica.resx">
-      <DependentUpon>Cistacica.cs</DependentUpon>
+    <EmbeddedResource Include="CleaningLadyForm.resx">
+      <DependentUpon>CleaningLadyForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="djelatnik.resx">
-      <DependentUpon>djelatnik.cs</DependentUpon>
+    <EmbeddedResource Include="Employee.resx">
+      <DependentUpon>Employee.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="glavna_forma.resx">
-      <DependentUpon>glavna_forma.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientForm.hr-HR.resx">
+      <DependentUpon>PatientForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -124,14 +127,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Sobe.resx">
-      <DependentUpon>Sobe.cs</DependentUpon>
+    <EmbeddedResource Include="Rooms.resx">
+      <DependentUpon>Rooms.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StarcekAU.resx">
-      <DependentUpon>StarcekAU.cs</DependentUpon>
+    <EmbeddedResource Include="PatientForm.resx">
+      <DependentUpon>PatientForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="starceki.resx">
-      <DependentUpon>starceki.cs</DependentUpon>
+    <EmbeddedResource Include="Patients.resx">
+      <DependentUpon>Patients.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

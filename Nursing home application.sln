@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test_baza_aplikacija", "test_baza_aplikacija\test_baza_aplikacija.csproj", "{64D99125-6ACB-4A22-A13F-28F441D824AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nursing home application", "test_baza_aplikacija\Nursing home application.csproj", "{64D99125-6ACB-4A22-A13F-28F441D824AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

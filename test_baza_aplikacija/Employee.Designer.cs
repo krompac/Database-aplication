@@ -1,6 +1,6 @@
-﻿namespace test_baza_aplikacija
+﻿namespace NursingHomeApplication
 {
-    partial class djelatnik
+    partial class Employee
     {
         /// <summary> 
         /// Required designer variable.

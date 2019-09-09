@@ -9,34 +9,34 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
-namespace test_baza_aplikacija
+namespace NursingHomeApplication
 {
-    public partial class djelatnik : UserControl
+    public partial class Employee : UserControl
     {
         MySqlConnection connection;
-        private string sql_combo = "";
-        private string sql_filter = "";
+        private string fillComboBoxQuery = "";
+        private string filterQuery = "";
 
-        public djelatnik()
+        public Employee()
         {
             InitializeComponent();
         }
 
-        public void load_djelatnici(glavna_forma forma)
+        public void LoadEmployees(MainForm forma)
         {
             this.Show();
             this.connection = forma.connection;
-            this.napuni_djelatnike();
-            this.napuni_combobox();
+            this.FillEmployeeView();
+            this.FillCombobox();
         }
 
-        public void clear_datagridview()
+        public void ClearView()
         {
             this.dataGridDjelatnici.Rows.Clear();
             this.dataGridDjelatnici.Refresh();
         }
 
-        private void napuni_djelatnike()
+        private void FillEmployeeView()
         {
             dataGridDjelatnici.Rows.Clear();
             connection.Open();
@@ -44,7 +44,7 @@ namespace test_baza_aplikacija
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select d.ID, d.ime, d.prezime, r.naziv as 'Radna jedinica', d.broj_mobitela, d.email, d.datum_zaposlenja, s.naziv as smjena, d.mjesto_stanovanja from djelatnik d " +
                               "left join radna_jedinica r on d.radna_jedinica_id = r.ID " +
-                              "left join smjena s on d.smjena_id = s.ID where d.ID " + sql_filter + sql_combo +
+                              "left join smjena s on d.smjena_id = s.ID where d.ID " + filterQuery + fillComboBoxQuery +
                               "order by d.ime";
 
             cmd.ExecuteNonQuery();
@@ -65,7 +65,7 @@ namespace test_baza_aplikacija
             }
         }
 
-        private void napuni_combobox()
+        private void FillCombobox()
         {
             connection.Open();
             MySqlCommand cmd = connection.CreateCommand();
@@ -79,47 +79,44 @@ namespace test_baza_aplikacija
             connection.Close();
 
             int i;
-            List<string> combo_vrijednosti = new List<string>();
-            combo_vrijednosti.Add("");
+            List<string> comboBoxValues = new List<string>() {""};
 
             for (i = 0; i < dt.Rows.Count; i++)
             {
-                combo_vrijednosti.Add(dt.Rows[i]["naziv"].ToString());
+                comboBoxValues.Add(dt.Rows[i]["naziv"].ToString());
             }
 
-            comboBox1.DataSource = combo_vrijednosti;
+            comboBox1.DataSource = comboBoxValues;
         }
 
         private void combobox_changed(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex > 0)
             {
-                sql_combo = " and r.naziv = '" + comboBox1.SelectedValue.ToString() + "' ";
+                fillComboBoxQuery = " and r.naziv = '" + comboBox1.SelectedValue.ToString() + "' ";
             }
             else
             {
-                sql_combo = "";
+                fillComboBoxQuery = "";
             }
 
-            napuni_djelatnike();
+            FillEmployeeView();
         }
 
         private void text_changed(object sender, EventArgs e)
         {
-            int broj;
-            bool je_broj = Int32.TryParse(textBox1.Text, out broj);
+            Int32.TryParse(textBox1.Text, out int number);
 
             if (textBox1.Text != "")
             {
-                sql_filter = " and (d.ime like '%" + textBox1.Text + "%' or d.prezime like '%" + textBox1.Text + "%' or CONCAT(d.ime, ' ', d.prezime) like '%" + textBox1.Text + "%' or CONCAT(d.prezime, ' ', d.ime) like '%" + textBox1.Text + "%') ";
+                filterQuery = " and (d.ime like '%" + textBox1.Text + "%' or d.prezime like '%" + textBox1.Text + "%' or CONCAT(d.ime, ' ', d.prezime) like '%" + textBox1.Text + "%' or CONCAT(d.prezime, ' ', d.ime) like '%" + textBox1.Text + "%') ";
             }
             else
             {
-                sql_filter = "";
+                filterQuery = "";
             }
 
-            napuni_djelatnike();
+            FillEmployeeView();
         }
-
     }
 }

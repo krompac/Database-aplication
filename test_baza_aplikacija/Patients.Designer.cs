@@ -1,6 +1,6 @@
-﻿namespace test_baza_aplikacija
+﻿namespace NursingHomeApplication
 {
-    partial class starceki
+    partial class Patients
     {
         /// <summary> 
         /// Required designer variable.
@@ -54,7 +54,7 @@
             this.filter.Name = "filter";
             this.filter.Size = new System.Drawing.Size(156, 31);
             this.filter.TabIndex = 20;
-            this.filter.TextChanged += new System.EventHandler(this.data_filter);
+            this.filter.TextChanged += new System.EventHandler(this.DataFilter);
             // 
             // izbrisi
             // 
@@ -68,7 +68,7 @@
             this.izbrisi.TabIndex = 19;
             this.izbrisi.Text = "Izbriši";
             this.izbrisi.UseVisualStyleBackColor = true;
-            this.izbrisi.Click += new System.EventHandler(this.izbrisi_Click);
+            this.izbrisi.Click += new System.EventHandler(this.DeleteClick);
             // 
             // dodaj_starca
             // 

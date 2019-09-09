@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
-namespace test_baza_aplikacija
+namespace NursingHomeApplication
 {
-    public partial class Sobe : UserControl
+    public partial class Rooms : UserControl
     {
         private MySqlConnection connection;
-        private bool second_load = false;
+        private bool secondLoad = false;
 
         private List<string> cb = new List<string>()
         {
@@ -24,19 +19,19 @@ namespace test_baza_aplikacija
             " and broj_praznih_kreveta(s.Broj_sobe) = 0 "
         };
 
-        public Sobe()
+        public Rooms()
         {
             InitializeComponent();
         }
 
-        private enum krevetnost_sobe
+        private enum RoomType
         {
-            Jednokrevetna = 1,
-            Dvokrevetna = 2,
-            Trokrevetna = 3
+            OneBed = 1,
+            TwoBed = 2,
+            ThreeBed = 3
         };
 
-        public void load_sobe(glavna_forma form)
+        public void LoadRooms(MainForm form)
         {
             this.connection = form.connection;
             this.Show();
@@ -44,18 +39,18 @@ namespace test_baza_aplikacija
             combonepok.SelectedIndex = 0;
             combopok.SelectedIndex = 0;
 
-            if (!second_load)
+            if (!secondLoad)
             {
-                second_load = true;
+                secondLoad = true;
             }
             else
             {
-                napuni(dataGridView1, 1, combopok);
-                napuni(dataGridView2, 2, combonepok);
+                FillDataGridView(dataGridView1, 1, combopok);
+                FillDataGridView(dataGridView2, 2, combonepok);
             }
         }
 
-        public void clear_datagrid_views()
+        public void ClearViews()
         {
             this.dataGridView1.Rows.Clear();
             this.dataGridView1.Refresh();
@@ -63,15 +58,18 @@ namespace test_baza_aplikacija
             this.dataGridView2.Refresh();
         }
 
-        private void napuni(DataGridView dataGridView, int broj_odjela, ComboBox pok, int br_sobe = 0, string sobarica_sql = "")
+        private void FillDataGridView(DataGridView dataGridView, int departmentNumber, ComboBox comboBox, int roomNumber = 0, 
+                                      string cleaningLady = "")
         {
             dataGridView.Rows.Clear();
             connection.Open();
             MySqlCommand cmd = connection.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select s.Broj_sobe as 'Broj sobe', s.broj_kreveta as 'Broj kreveta',  s.broj_kreveta - broj_praznih_kreveta(s.Broj_sobe) as 'Slobodni kreveti', " +
+            cmd.CommandText = "select s.Broj_sobe as 'Broj sobe', s.broj_kreveta as 'Broj kreveta',"+
+                              "s.broj_kreveta - broj_praznih_kreveta(s.Broj_sobe) as 'Slobodni kreveti', " +
                               "djelatnik.ime, djelatnik.prezime from soba s " +
-                              "left join djelatnik on s.sobarica_id = djelatnik.ID where s.odjel_id = " + broj_odjela.ToString() + sobarica_sql + cb[pok.SelectedIndex] +
+                              "left join djelatnik on s.sobarica_id = djelatnik.ID where s.odjel_id = " + 
+                              departmentNumber.ToString() + cleaningLady + cb[comboBox.SelectedIndex] +
                               " order by s.Broj_sobe;";
 
             cmd.ExecuteNonQuery();
@@ -80,19 +78,19 @@ namespace test_baza_aplikacija
             DA.Fill(dt);
 
             int i;
-            string full_ime;
-            krevetnost_sobe krevetnost;
+            string fullName;
+            RoomType roomType;
 
-            if (br_sobe > 0)
+            if (roomNumber > 0)
             {
                 for (i = 0; i < dt.Rows.Count; i++)
                 {
-                    krevetnost = (krevetnost_sobe)dt.Rows[i]["Broj kreveta"];
-                    full_ime = dt.Rows[i]["ime"] + " " + dt.Rows[i]["Prezime"];
+                    roomType = (RoomType)dt.Rows[i]["Broj kreveta"];
+                    fullName = dt.Rows[i]["ime"] + " " + dt.Rows[i]["Prezime"];
 
-                    if (dt.Rows[i]["Broj sobe"].ToString().Contains(br_sobe.ToString()))
+                    if (dt.Rows[i]["Broj sobe"].ToString().Contains(roomNumber.ToString()))
                     {
-                        dataGridView.Rows.Add(dt.Rows[i]["Broj sobe"], krevetnost.ToString(), dt.Rows[i]["Slobodni kreveti"], full_ime);
+                        dataGridView.Rows.Add(dt.Rows[i]["Broj sobe"], roomType.ToString(), dt.Rows[i]["Slobodni kreveti"], fullName);
                     }
                 }
             }
@@ -100,14 +98,14 @@ namespace test_baza_aplikacija
             {
                 for (i = 0; i < dt.Rows.Count; i++)
                 {
-                    krevetnost = (krevetnost_sobe)dt.Rows[i]["Broj kreveta"];
-                    full_ime = dt.Rows[i]["ime"] + " " + dt.Rows[i]["Prezime"];
+                    roomType = (RoomType)dt.Rows[i]["Broj kreveta"];
+                    fullName = dt.Rows[i]["ime"] + " " + dt.Rows[i]["Prezime"];
 
-                    dataGridView.Rows.Add(dt.Rows[i]["Broj sobe"], krevetnost.ToString(), dt.Rows[i]["Slobodni kreveti"], full_ime);
+                    dataGridView.Rows.Add(dt.Rows[i]["Broj sobe"], roomType.ToString(), dt.Rows[i]["Slobodni kreveti"], fullName);
                 }
             }
 
-            if (broj_odjela == 1)
+            if (departmentNumber == 1)
             {
                 broj_soba_pok.Text = dt.Rows.Count.ToString();
             }
@@ -119,41 +117,40 @@ namespace test_baza_aplikacija
             connection.Close();
         }
 
-        private string sobarica_SQL(string text)
+        private string QueryForCleaningLady(string text)
         {
             string SQL = " and (djelatnik.ime like '%" + text + "%' or djelatnik.prezime like '%" + text + "%' or CONCAT(djelatnik.ime, ' ', djelatnik.prezime) like '%" + text + "%') ";
 
             return SQL;
         }
 
-        private void filter(DataGridView gridView, TextBox filter, int odj_id, ComboBox pok)
+        private void Filter(DataGridView gridView, TextBox filter, int departmentId, ComboBox comboBox)
         {
-            int broj;
-            bool je_broj = Int32.TryParse(filter.Text, out broj);
+            bool isNumber = Int32.TryParse(filter.Text, out int number);
 
-            if (je_broj)
+            if (isNumber)
             {
-                napuni(gridView, odj_id, pok, broj);
+                FillDataGridView(gridView, departmentId, comboBox, number);
             }
             else if (filter.Text != "")
             {
-                napuni(gridView, odj_id, pok, -1, sobarica_SQL(filter.Text));
+                FillDataGridView(gridView, departmentId, comboBox, -1, QueryForCleaningLady(filter.Text));
             }
             else
             {
-                napuni(gridView, odj_id, pok);
+                FillDataGridView(gridView, departmentId, comboBox);
             }
         }
 
-        private void change_data(object sender, EventArgs e)
+        private void ChangeData(object sender, EventArgs e)
         {
             if (sender == trazi_pok || sender == combopok)
             {
-                filter(dataGridView1, trazi_pok, 1, combopok);
+                Filter(dataGridView1, trazi_pok, 1, combopok);
             }
             else if (sender == trazi_nepok || sender == combonepok)
             {
-                filter(dataGridView2, trazi_nepok, 2, combonepok);
+                Filter(dataGridView2, trazi_nepok, 2, combonepok);
             }
         }
     }

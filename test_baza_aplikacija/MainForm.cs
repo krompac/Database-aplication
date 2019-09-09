@@ -9,26 +9,26 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
-namespace test_baza_aplikacija
+namespace NursingHomeApplication
 {
-    public partial class glavna_forma : Form
+    public partial class MainForm : Form
     {
         public MySqlConnection connection;
         public int line_number;
-        private Login parent_form;
-        private bool user_closing;
+        private LoginForm loginForm;
+        private bool userClosing;
 
-        public glavna_forma(MySqlConnection sqlConnection, Login form1)
+        public MainForm(MySqlConnection sqlConnection, LoginForm form)
         {
             InitializeComponent();
             this.connection = sqlConnection;
-            parent_form = form1;
+            loginForm = form;
             
             this.starceki1.Hide();
             this.sobe_uc1.Hide();
             this.djelatnik1.Hide();
 
-            user_closing = true;
+            userClosing = true;
         }
 
         //starčeki
@@ -37,15 +37,15 @@ namespace test_baza_aplikacija
             if (this.sobe_uc1.Visible)
             {
                 this.sobe_uc1.Visible = false;
-                this.sobe_uc1.clear_datagrid_views();
+                this.sobe_uc1.ClearViews();
             }
             else if (this.djelatnik1.Visible)
             {
                 this.djelatnik1.Visible = false;
-                this.djelatnik1.clear_datagridview();
+                this.djelatnik1.ClearView();
             }
 
-            this.starceki1.load_starceki(connection, this);
+            this.starceki1.LoadPatients(connection, this);
         }
 
         private void sobe_Click(object sender, EventArgs e)
@@ -53,15 +53,15 @@ namespace test_baza_aplikacija
             if (this.starceki1.Visible)
             {
                 this.starceki1.Visible = false;
-                this.starceki1.clear_datagrid();
+                this.starceki1.ClearView();
             }
             else if (this.djelatnik1.Visible)
             {
                 this.djelatnik1.Visible = false;
-                this.djelatnik1.clear_datagridview();
+                this.djelatnik1.ClearView();
             }
 
-            this.sobe_uc1.load_sobe(this);
+            this.sobe_uc1.LoadRooms(this);
         }
 
         private void djelatnici_Click(object sender, EventArgs e)
@@ -69,29 +69,29 @@ namespace test_baza_aplikacija
             if (this.starceki1.Visible)
             {
                 this.starceki1.Visible = false;
-                this.starceki1.clear_datagrid();
+                this.starceki1.ClearView();
             }
             else if (this.sobe_uc1.Visible)
             {
                 this.sobe_uc1.Visible = false;
-                this.sobe_uc1.clear_datagrid_views();
+                this.sobe_uc1.ClearViews();
             }
 
-            this.djelatnik1.load_djelatnici(this);
+            this.djelatnik1.LoadEmployees(this);
         }
 
         private void natrag_Click(object sender, EventArgs e)
         {
-            parent_form.prikazi_ovu_formu();
-            user_closing = false;
+            loginForm.ShowMe();
+            userClosing = false;
             this.Close();
         }
 
         private void form_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing && user_closing)
+            if (e.CloseReason == CloseReason.UserClosing && userClosing)
             {
-                parent_form.Close();
+                loginForm.Close();
             }
         }
     }
