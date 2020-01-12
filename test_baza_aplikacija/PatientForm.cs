@@ -9,7 +9,6 @@ namespace NursingHomeApplication
 {
     public partial class PatientForm : Form
     {
-        private MySqlConnection connection;
         private int lineNumber;
         private string comboBoxFirstItem = "";
         private Patients Form2;
@@ -18,8 +17,7 @@ namespace NursingHomeApplication
         public PatientForm(Patients forma2)
         {
             InitializeComponent();
-            this.connection = forma2.connection;
-            this.lineNumber = forma2.lineNumber + 1;
+            this.lineNumber = forma2.LineNumber + 1;
             Form2 = forma2;
             this.napuni_combobox();
         }
@@ -27,22 +25,15 @@ namespace NursingHomeApplication
         public PatientForm(int rowIndex, Patients forma2, DataGridView data)
         {
             InitializeComponent();
-            this.connection = forma2.connection;
             this.Form2 = forma2;
             this.lineNumber = Int32.Parse(data.Rows[rowIndex].Cells[6].Value.ToString());
             this.gumb_dodaj.Text = "Uredi";
             edit = true;
 
-            connection.Open();
-            MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from stara_osoba where ID = " + this.lineNumber + ";";
-
-            cmd.ExecuteNonQuery();
-            DataTable dt = new DataTable();
-            MySqlDataAdapter DA = new MySqlDataAdapter(cmd);
-            DA.Fill(dt);
-
+            
+            string query = "select * from stara_osoba where ID = " + this.lineNumber + ";";
+            DataTable dt = DB.Instance.GetData(query);
+            
             textIme.Text = dt.Rows[0]["ime"].ToString();
             textPrezime.Text = dt.Rows[0]["prezime"].ToString();
             dat_rodjenja.Text = dt.Rows[0]["god_rodjenja"].ToString();
@@ -56,14 +47,12 @@ namespace NursingHomeApplication
             br_sobe = dt.Rows[0]["soba_id"].ToString();
             dt.Clear();
 
-            cmd.CommandText = "select odjel.naziv as Naziv from odjel, soba where soba.broj_sobe = " + br_sobe + " and soba.odjel_id = odjel.ID;";
-            MySqlDataAdapter mySqlData = new MySqlDataAdapter(cmd);
-            mySqlData.Fill(dt);
-
+            query = "select odjel.naziv as Naziv from odjel, soba where soba.broj_sobe = " + br_sobe + " and soba.odjel_id = odjel.ID;";
+            dt = DB.Instance.GetData(query);
+            
             br_sobe = $"{br_sobe,-4}";
             comboBoxFirstItem = br_sobe + " |   " + dt.Rows[0]["Naziv"].ToString();
-
-            connection.Close();
+            
             napuni_combobox();
         }
 
@@ -104,26 +93,22 @@ namespace NursingHomeApplication
             {
                 if (goodInput)
                 {
-                    connection.Open();
-                    MySqlCommand cmd = connection.CreateCommand();
-                    cmd.CommandType = CommandType.Text;
-
+                    string query;
+                    
                     if (edit == false)
                     { 
-                        cmd.CommandText = "insert into stara_osoba(ID, ime, prezime, god_rodjenja, spol, diabeticar, soba_id, kontakt_osoba, broj_mob_kontakt, datum_useljenja)" +
+                        query = "insert into stara_osoba(ID, ime, prezime, god_rodjenja, spol, diabeticar, soba_id, kontakt_osoba, broj_mob_kontakt, datum_useljenja)" +
                                           " values(" + id + ime + prezime + datum_rodjenja + spol + dijabeticar + broj_sobe + kontakt_osoba + kontakt_broj + datum_useljenja + ");";
                     }
                     else
                     {
                         id = lineNumber.ToString();
-                        cmd.CommandText = "update stara_osoba set ime = " + ime + "prezime = " + prezime + "god_rodjenja = " + datum_rodjenja +
+                        query = "update stara_osoba set ime = " + ime + "prezime = " + prezime + "god_rodjenja = " + datum_rodjenja +
                                           " spol = " + spol + "diabeticar = " + dijabeticar + " soba_id = " + broj_sobe + " kontakt_osoba = " + kontakt_osoba +
                                           " broj_mob_kontakt = " + kontakt_broj + " datum_useljenja = " + datum_useljenja + 
                                           " where ID = " + id + ";";
                     }
-                    cmd.ExecuteNonQuery();
-
-                    connection.Close();
+                    DB.Instance.UpdateOrDelete(query);
 
                     Form2.FillView();
                     this.Close();
@@ -137,15 +122,9 @@ namespace NursingHomeApplication
 
         private void napuni_combobox()
         {
-            connection.Open();
-            MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select soba.broj_sobe as 'Broj sobe', odjel.naziv as Odjel from soba, odjel " +
-                              "where broj_praznih_kreveta(soba.broj_sobe) < soba.broj_kreveta and soba.odjel_id = odjel.ID;";
-            cmd.ExecuteNonQuery();
-            DataTable dt = new DataTable();
-            MySqlDataAdapter DA = new MySqlDataAdapter(cmd);
-            DA.Fill(dt);
+            string query = "select soba.broj_sobe as 'Broj sobe', odjel.naziv as Odjel from soba, odjel " +
+                           "where broj_praznih_kreveta(soba.broj_sobe) < soba.broj_kreveta and soba.odjel_id = odjel.ID;";
+            DataTable dt = DB.Instance.GetData(query);
 
             int max = dt.Rows.Count;
             string roomNumber = "";
@@ -166,8 +145,6 @@ namespace NursingHomeApplication
                 data.Add(roomNumber +  " |   " + dt.Rows[i]["Odjel"].ToString());
             }
             comboSoba.DataSource = data.ToList();
-
-            connection.Close();
         }
         
 

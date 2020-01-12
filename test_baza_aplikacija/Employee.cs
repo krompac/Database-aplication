@@ -42,7 +42,8 @@ namespace NursingHomeApplication
             connection.Open();
             MySqlCommand cmd = connection.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select d.ID, d.ime, d.prezime, r.naziv as 'Radna jedinica', d.broj_mobitela, d.email, d.datum_zaposlenja, s.naziv as smjena, d.mjesto_stanovanja from djelatnik d " +
+            cmd.CommandText = "select d.ID, d.ime, d.prezime, r.naziv as 'Radna jedinica', d.broj_mobitela, d.email, d.datum_zaposlenja, s.naziv as smjena, " +
+                              "d.mjesto_stanovanja from djelatnik d " +
                               "left join radna_jedinica r on d.radna_jedinica_id = r.ID " +
                               "left join smjena s on d.smjena_id = s.ID where d.ID " + filterQuery + fillComboBoxQuery +
                               "order by d.ime";
@@ -107,15 +108,10 @@ namespace NursingHomeApplication
         {
             Int32.TryParse(textBox1.Text, out int number);
 
-            if (textBox1.Text != "")
-            {
-                filterQuery = " and (d.ime like '%" + textBox1.Text + "%' or d.prezime like '%" + textBox1.Text + "%' or CONCAT(d.ime, ' ', d.prezime) like '%" + textBox1.Text + "%' or CONCAT(d.prezime, ' ', d.ime) like '%" + textBox1.Text + "%') ";
-            }
-            else
-            {
-                filterQuery = "";
-            }
-
+            filterQuery = textBox1.Text != "" ? " and (d.ime like '%" + textBox1.Text + "%' or d.prezime like '%" + textBox1.Text 
+                                                + "%' or CONCAT(d.ime, ' ', d.prezime) like '%"
+                                                + textBox1.Text + "%' or CONCAT(d.prezime, ' ', d.ime) like '%" + textBox1.Text + "%') " 
+                                                : "";
             FillEmployeeView();
         }
     }

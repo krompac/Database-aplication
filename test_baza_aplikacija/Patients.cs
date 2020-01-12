@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace NursingHomeApplication
 {
@@ -14,9 +13,7 @@ namespace NursingHomeApplication
             both
         };
 
-        public MySqlConnection connection;
         private Departments department;
-        public int lineNumber;
         private MainForm mainForm;
 
         public Patients()
@@ -24,9 +21,8 @@ namespace NursingHomeApplication
             InitializeComponent();
         }
 
-        public void LoadPatients(MySqlConnection sqlConnection, MainForm form)
+        public void LoadPatients(MainForm form)
         {
-            this.connection = sqlConnection;
             mainForm = form;
             this.Show();
             department = Departments.both;
@@ -53,14 +49,14 @@ namespace NursingHomeApplication
 
         private void checkBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (nepokretni.Checked)
+            if (immobileCheckBox.Checked)
             {
-                pokretni.Checked = false;
+                mobileCheckBox.Checked = false;
                 department = Departments.immobile;
             }
-            else if (pokretni.Checked)
+            else if (mobileCheckBox.Checked)
             {
-                nepokretni.Checked = false;
+                immobileCheckBox.Checked = false;
                 department = Departments.mobile;
             }
             else
@@ -71,28 +67,23 @@ namespace NursingHomeApplication
             FillView();
         }
 
-        public void SetLineNumber()
+        public int LineNumber
         {
-            connection.Open();
-            MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "select id from stara_osoba order by id desc limit 1";
-            cmd.ExecuteNonQuery();
-            DataTable dt = new DataTable();
-            MySqlDataAdapter DA = new MySqlDataAdapter(cmd);
-            DA.Fill(dt);
+            get 
+            {
+                string query = "select id from stara_osoba order by id desc limit 1";
+                DataTable dt = DB.Instance.GetData(query);
 
-            try
-            {
-                Int32.TryParse(dt.Rows[0]["id"].ToString(), out lineNumber);
-            }
-            catch
-            {
-                lineNumber = 0;
-            }
-            finally
-            {
-                connection.Close();
-            }
+                try
+                {
+                    Int32.TryParse(dt.Rows[0]["id"].ToString(), out int lineNumber);
+                    return lineNumber;
+                }
+                catch
+                {
+                    return 0;
+                }
+            } 
         }
 
         public void FillView(string sql = "")
@@ -109,38 +100,29 @@ namespace NursingHomeApplication
             }
 
             dataGridView.Rows.Clear();
-            connection.Open();
-            MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select s.ID as ID, s.ime as Ime, s.prezime as Prezime, s.kontakt_osoba as 'Kontakt osoba', s.datum_useljenja as 'Datum useljenja', s.soba_id as 'Broj sobe', o.naziv as Odjel " +
-                              "from stara_osoba s, odjel o " +
-                              "left join soba on o.ID = soba.odjel_id " +
-                              "where s.soba_id = soba.broj_sobe " + naziv_odjela + sql +
-                              "order by s.ime;";
+            string query = "select s.ID as ID, s.ime as Ime, s.prezime as Prezime, s.kontakt_osoba as 'Kontakt osoba', s.datum_useljenja as 'Datum useljenja', s.soba_id " +
+                           "as 'Broj sobe', o.naziv as Odjel " +
+                           "from stara_osoba s, odjel o " +
+                           "left join soba on o.ID = soba.odjel_id " +
+                           "where s.soba_id = soba.broj_sobe " + naziv_odjela + sql +
+                           "order by s.ime;";
+            DataTable dt = DB.Instance.GetData(query);
 
-            cmd.ExecuteNonQuery();
-            DataTable dt = new DataTable();
-            MySqlDataAdapter DA = new MySqlDataAdapter(cmd);
-            DA.Fill(dt);
-
-            lineNumber = dt.Rows.Count;
             int i;
             string vrijeme = "";
 
-            for (i = 0; i < lineNumber; i++)
+            for (i = 0; i < dt.Rows.Count; i++)
             {
                 vrijeme = dt.Rows[i]["Datum useljenja"].ToString();
                 vrijeme = vrijeme.Substring(0, 9);
 
-                dataGridView.Rows.Add(dt.Rows[i]["Ime"], dt.Rows[i]["Prezime"], dt.Rows[i]["Kontakt osoba"], vrijeme, dt.Rows[i]["Broj sobe"], dt.Rows[i]["Odjel"], dt.Rows[i]["ID"]);
+                dataGridView.Rows.Add(dt.Rows[i]["Ime"], dt.Rows[i]["Prezime"], dt.Rows[i]["Kontakt osoba"], vrijeme, dt.Rows[i]["Broj sobe"], dt.Rows[i]["Odjel"], 
+                                      dt.Rows[i]["ID"]);
             }
-
-            connection.Close();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            SetLineNumber();
             PatientForm starcek = new PatientForm(this);
             starcek.Show();
         }
@@ -155,20 +137,15 @@ namespace NursingHomeApplication
                 {
                     int cellCount = dataGridView.SelectedCells.Count;
                     int rowIndex;
-
-                    connection.Open();
-
+                    string query;
+                    
                     for (int i = 0; i < cellCount; i++)
                     {
                         rowIndex = dataGridView.SelectedCells[i].RowIndex;
-                        MySqlCommand cmd = connection.CreateCommand();
-                        cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = "delete from stara_osoba where id = " + dataGridView.Rows[rowIndex].Cells[6].Value.ToString() + ";";
-
-                        cmd.ExecuteNonQuery();
+                        query = "delete from stara_osoba where id = " + dataGridView.Rows[rowIndex].Cells[6].Value.ToString() + ";";
+                        DB.Instance.UpdateOrDelete(query);
                     }
-
-                    connection.Close();
+                    
                     FillView();
                 }
             }

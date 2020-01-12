@@ -13,15 +13,13 @@ namespace NursingHomeApplication
 {
     public partial class MainForm : Form
     {
-        public MySqlConnection connection;
         public int line_number;
         private LoginForm loginForm;
         private bool userClosing;
 
-        public MainForm(MySqlConnection sqlConnection, LoginForm form)
+        public MainForm(LoginForm form)
         {
             InitializeComponent();
-            this.connection = sqlConnection;
             loginForm = form;
             
             this.starceki1.Hide();
@@ -45,7 +43,7 @@ namespace NursingHomeApplication
                 this.djelatnik1.ClearView();
             }
 
-            this.starceki1.LoadPatients(connection, this);
+            this.starceki1.LoadPatients(this);
         }
 
         private void sobe_Click(object sender, EventArgs e)

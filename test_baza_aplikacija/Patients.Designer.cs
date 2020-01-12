@@ -33,8 +33,8 @@
             this.filter = new System.Windows.Forms.TextBox();
             this.izbrisi = new System.Windows.Forms.Button();
             this.dodaj_starca = new System.Windows.Forms.Button();
-            this.pokretni = new System.Windows.Forms.CheckBox();
-            this.nepokretni = new System.Windows.Forms.CheckBox();
+            this.mobileCheckBox = new System.Windows.Forms.CheckBox();
+            this.immobileCheckBox = new System.Windows.Forms.CheckBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -85,29 +85,29 @@
             // 
             // pokretni
             // 
-            this.pokretni.AccessibleName = "Pokretni";
-            this.pokretni.AutoSize = true;
-            this.pokretni.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pokretni.Location = new System.Drawing.Point(739, 21);
-            this.pokretni.Name = "pokretni";
-            this.pokretni.Size = new System.Drawing.Size(65, 17);
-            this.pokretni.TabIndex = 17;
-            this.pokretni.Text = "Pokretni";
-            this.pokretni.UseVisualStyleBackColor = true;
-            this.pokretni.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            this.mobileCheckBox.AccessibleName = "Pokretni";
+            this.mobileCheckBox.AutoSize = true;
+            this.mobileCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.mobileCheckBox.Location = new System.Drawing.Point(739, 21);
+            this.mobileCheckBox.Name = "pokretni";
+            this.mobileCheckBox.Size = new System.Drawing.Size(65, 17);
+            this.mobileCheckBox.TabIndex = 17;
+            this.mobileCheckBox.Text = "Pokretni";
+            this.mobileCheckBox.UseVisualStyleBackColor = true;
+            this.mobileCheckBox.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // nepokretni
             // 
-            this.nepokretni.AccessibleName = "Polupokretni";
-            this.nepokretni.AutoSize = true;
-            this.nepokretni.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.nepokretni.Location = new System.Drawing.Point(739, 51);
-            this.nepokretni.Name = "nepokretni";
-            this.nepokretni.Size = new System.Drawing.Size(103, 17);
-            this.nepokretni.TabIndex = 16;
-            this.nepokretni.Text = "Polu(ne)pokretni";
-            this.nepokretni.UseVisualStyleBackColor = true;
-            this.nepokretni.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            this.immobileCheckBox.AccessibleName = "Polupokretni";
+            this.immobileCheckBox.AutoSize = true;
+            this.immobileCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.immobileCheckBox.Location = new System.Drawing.Point(739, 51);
+            this.immobileCheckBox.Name = "nepokretni";
+            this.immobileCheckBox.Size = new System.Drawing.Size(103, 17);
+            this.immobileCheckBox.TabIndex = 16;
+            this.immobileCheckBox.Text = "Polu(ne)pokretni";
+            this.immobileCheckBox.UseVisualStyleBackColor = true;
+            this.immobileCheckBox.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // dataGridView
             // 
@@ -207,8 +207,8 @@
             this.Controls.Add(this.filter);
             this.Controls.Add(this.izbrisi);
             this.Controls.Add(this.dodaj_starca);
-            this.Controls.Add(this.pokretni);
-            this.Controls.Add(this.nepokretni);
+            this.Controls.Add(this.mobileCheckBox);
+            this.Controls.Add(this.immobileCheckBox);
             this.Controls.Add(this.dataGridView);
             this.Name = "starceki";
             this.Size = new System.Drawing.Size(877, 450);
@@ -223,8 +223,8 @@
         private System.Windows.Forms.TextBox filter;
         private System.Windows.Forms.Button izbrisi;
         private System.Windows.Forms.Button dodaj_starca;
-        private System.Windows.Forms.CheckBox pokretni;
-        private System.Windows.Forms.CheckBox nepokretni;
+        private System.Windows.Forms.CheckBox mobileCheckBox;
+        private System.Windows.Forms.CheckBox immobileCheckBox;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;

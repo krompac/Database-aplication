@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace NursingHomeApplication
 {
     public partial class Rooms : UserControl
     {
-        private MySqlConnection connection;
         private bool secondLoad = false;
 
         private List<string> cb = new List<string>()
@@ -33,7 +31,6 @@ namespace NursingHomeApplication
 
         public void LoadRooms(MainForm form)
         {
-            this.connection = form.connection;
             this.Show();
 
             combonepok.SelectedIndex = 0;
@@ -62,20 +59,14 @@ namespace NursingHomeApplication
                                       string cleaningLady = "")
         {
             dataGridView.Rows.Clear();
-            connection.Open();
-            MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select s.Broj_sobe as 'Broj sobe', s.broj_kreveta as 'Broj kreveta',"+
+            string query = "select s.Broj_sobe as 'Broj sobe', s.broj_kreveta as 'Broj kreveta',"+
                               "s.broj_kreveta - broj_praznih_kreveta(s.Broj_sobe) as 'Slobodni kreveti', " +
                               "djelatnik.ime, djelatnik.prezime from soba s " +
                               "left join djelatnik on s.sobarica_id = djelatnik.ID where s.odjel_id = " + 
                               departmentNumber.ToString() + cleaningLady + cb[comboBox.SelectedIndex] +
                               " order by s.Broj_sobe;";
 
-            cmd.ExecuteNonQuery();
-            DataTable dt = new DataTable();
-            MySqlDataAdapter DA = new MySqlDataAdapter(cmd);
-            DA.Fill(dt);
+            DataTable dt = DB.Instance.GetData(query);
 
             int i;
             string fullName;
@@ -113,15 +104,12 @@ namespace NursingHomeApplication
             {
                 broj_soba_nepok.Text = dt.Rows.Count.ToString();
             }
-
-            connection.Close();
         }
 
         private string QueryForCleaningLady(string text)
         {
-            string SQL = " and (djelatnik.ime like '%" + text + "%' or djelatnik.prezime like '%" + text + "%' or CONCAT(djelatnik.ime, ' ', djelatnik.prezime) like '%" + text + "%') ";
-
-            return SQL;
+            return " and (djelatnik.ime like '%" + text + "%' or djelatnik.prezime like '%" + text + "%' or CONCAT(djelatnik.ime, ' ', djelatnik.prezime) like '%" 
+                         + text + "%') ";
         }
 
         private void Filter(DataGridView gridView, TextBox filter, int departmentId, ComboBox comboBox)

@@ -65,6 +65,7 @@
     <Compile Include="CleaningLadyForm.Designer.cs">
       <DependentUpon>CleaningLadyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DB.cs" />
     <Compile Include="Employee.cs">
       <SubType>UserControl</SubType>
     </Compile>
